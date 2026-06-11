@@ -195,6 +195,15 @@ input[type="number"] {
   flex-direction: column;
   align-items: center;
   flex: 1;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: var(--transition);
+}
+
+.team-info:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.05);
 }
 
 .team-info img {
@@ -350,4 +359,38 @@ input[type="number"] {
     font-size: 1rem;
     gap: 0.5rem !important;
   }
+}
+
+/* Turkey Match Highlight */
+.turkey-match-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(227, 10, 23, 0.4) !important;
+  background: linear-gradient(135deg, rgba(227, 10, 23, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  box-shadow: 0 0 20px rgba(227, 10, 23, 0.2) !important;
+}
+
+.turkey-match-card::before {
+  content: '🇹🇷 BİZİM ÇOCUKLAR 🇹🇷';
+  position: absolute;
+  top: 15px;
+  right: -45px;
+  background-color: #e30a17;
+  color: white;
+  padding: 4px 40px;
+  font-size: 0.70rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 5;
+}
+
+.turkey-match-card .match-row {
+  border-bottom: 1px solid rgba(227, 10, 23, 0.2);
+}
+
+.turkey-match-card .score-input:focus {
+  border-color: #e30a17 !important;
+  box-shadow: 0 0 0 3px rgba(227, 10, 23, 0.3) !important;
 }

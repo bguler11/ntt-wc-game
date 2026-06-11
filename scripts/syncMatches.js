@@ -55,6 +55,7 @@ async function syncMatches() {
         awayFlag: m.awayTeam?.crest || '🌐',
         date: m.utcDate,
         status: m.status,
+        group: m.group || null,
         result: {
           home: m.score?.fullTime?.home ?? null,
           away: m.score?.fullTime?.away ?? null
