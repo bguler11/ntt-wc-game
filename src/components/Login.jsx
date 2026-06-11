@@ -7,9 +7,10 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   
-  const { login } = useAuth();
+  const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -22,6 +23,25 @@ export default function Login() {
       navigate('/');
     } catch (err) {
       setError('Giriş yapılamadı. E-posta veya şifre hatalı olabilir.');
+    }
+    setLoading(false);
+  }
+
+  async function handleResetPassword(e) {
+    e.preventDefault();
+
+    if (!email) {
+      return setError('Şifre sıfırlamak için lütfen önce e-posta adresinizi girin.');
+    }
+
+    try {
+      setMessage('');
+      setError('');
+      setLoading(true);
+      await resetPassword(email);
+      setMessage('Şifre sıfırlama bağlantısı e-posta adresinize gönderildi. Lütfen gelen kutunuzu (ve spam klasörünü) kontrol edin.');
+    } catch (err) {
+      setError('Şifre sıfırlama başarısız oldu. E-posta adresinin doğru olduğundan emin olun.');
     }
     setLoading(false);
   }
@@ -39,6 +59,12 @@ export default function Login() {
             <span style={{ fontSize: '0.875rem' }}>{error}</span>
           </div>
         )}
+        
+        {message && (
+          <div style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)', color: 'var(--success)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontSize: '0.875rem' }}>{message}</span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -54,7 +80,16 @@ export default function Login() {
           </div>
           
           <div className="input-group">
-            <label htmlFor="password">Şifre</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+              <label htmlFor="password" style={{ marginBottom: 0 }}>Şifre</label>
+              <button 
+                type="button" 
+                onClick={handleResetPassword}
+                style={{ background: 'none', border: 'none', color: 'var(--accent-primary)', fontSize: '0.875rem', cursor: 'pointer', padding: 0, fontWeight: '600' }}
+              >
+                Şifremi Unuttum?
+              </button>
+            </div>
             <input 
               type="password" 
               id="password" 
