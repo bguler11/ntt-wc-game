@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <div>
       <header className={`header-container ${scrolled ? 'scrolled' : ''}`}>
-        <h1 className="text-gradient" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0, fontSize: scrolled ? '0px' : '1.5rem', transition: 'all 0.3s ease' }}>
+        <h1 className={`text-gradient header-title ${scrolled ? 'scrolled-text' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0, transition: 'all 0.3s ease' }}>
           <img src={logo} alt="Dünya Kupası Logo" style={{ width: scrolled ? '36px' : '44px', height: scrolled ? '36px' : '44px', borderRadius: '50%', transition: 'all 0.3s ease' }} />
           <span style={{ 
             opacity: scrolled ? 0 : 1, 

@@ -29,7 +29,7 @@ async function syncLiveScores() {
       process.exit(0);
     }
 
-    const liveStatuses = ['1H', '2H', 'HT', 'LIVE', 'IN_PLAY']; 
+    const liveStatuses = ['1H', '2H', 'HT', 'LIVE', 'IN_PLAY', 'FT', 'AET', 'Pen.']; 
     const liveEvents = data.events.filter(e => liveStatuses.includes(e.strStatus));
     
     console.log(`TheSportsDB'de ${liveEvents.length} adet CANLI mac bulundu.`);
@@ -50,11 +50,14 @@ async function syncLiveScores() {
 
       if (!matchQuery.empty) {
         const matchDocSnap = matchQuery.docs[0];
-        console.log(`Eslesme bulundu: ${homeTeam} vs ${awayTeam} -> Skor: ${homeScore}-${awayScore}`);
+        const isFinished = ['FT', 'AET', 'Pen.'].includes(e.strStatus);
+        const newStatus = isFinished ? 'FINISHED' : 'IN_PLAY';
+
+        console.log(`Eslesme bulundu: ${homeTeam} vs ${awayTeam} -> Skor: ${homeScore}-${awayScore} (${newStatus})`);
         
         // Mac durumunu ve skorunu anlik guncelle
         await matchDocSnap.ref.update({
-          status: 'IN_PLAY',
+          status: newStatus,
           'result.home': homeScore,
           'result.away': awayScore
         });
@@ -63,6 +66,8 @@ async function syncLiveScores() {
         const qAll = await db.collection('predictions').where('matchId', '==', matchDocSnap.id).get();
         qAll.docs.forEach(pDoc => {
           const predData = pDoc.data();
+          if (predData.isProcessed) return; // Zaten kalici puana donusmusse canli puan ekleme
+
           const predHome = Number(predData.homeScore);
           const predAway = Number(predData.awayScore);
 
