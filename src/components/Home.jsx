@@ -20,7 +20,10 @@ export default function Home() {
   return (
     <div>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '2rem', borderBottom: '1px solid var(--glass-border)', marginBottom: '2rem' }}>
-        <h1 className="text-gradient">⚽ Dünya Kupası Tahmin</h1>
+        <h1 className="text-gradient" style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: 0 }}>
+          <img src={logo} alt="Dünya Kupası Logo" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+          Dünya Kupası Tahmin
+        </h1>
         {currentUser ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <span style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>

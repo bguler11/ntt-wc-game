@@ -175,3 +175,106 @@ input[type="number"] {
   font-weight: 700;
   color: white;
 }
+
+/* Match Card Responsive Styles */
+.match-card {
+  padding: 1.5rem;
+}
+
+.match-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.team-info img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.team-emoji {
+  font-size: 3rem;
+}
+
+.team-name {
+  font-weight: 600;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.score-inputs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.score-input {
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+  text-align: center;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  color: white;
+  border-radius: 12px;
+}
+
+.score-divider {
+  display: none; /* Hide dash on desktop, or keep it */
+}
+
+.submit-prediction-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .match-card {
+    padding: 1rem;
+  }
+  
+  .match-row {
+    gap: 0.5rem;
+  }
+  
+  .team-info img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .team-emoji {
+    font-size: 2rem;
+  }
+  
+  .team-name {
+    font-size: 0.75rem;
+  }
+  
+  .score-inputs {
+    gap: 0.5rem;
+  }
+  
+  .score-input {
+    width: 45px;
+    height: 45px;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+  }
+  
+  .submit-prediction-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+

@@ -28,7 +28,6 @@ export default function Matches() {
   useEffect(() => {
     if (!currentUser) return;
     
-    // Kullanıcının daha önce yaptığı tahminleri Firestore'dan çekiyoruz
     const qPred = query(collection(db, 'predictions'), where('userId', '==', currentUser.uid));
     const unsubscribePred = onSnapshot(qPred, (querySnapshot) => {
       const preds = {};
@@ -39,7 +38,6 @@ export default function Matches() {
           away: data.awayScore
         };
       });
-      // Sadece veritabanından gelen ilk yüklemede veya başka sekmeden güncellendiğinde state'i değiştir
       setPredictions(prev => ({ ...prev, ...preds }));
     }, (error) => {
       console.error("Tahminler çekilemedi:", error);
@@ -106,7 +104,6 @@ export default function Matches() {
     );
   }
 
-  // Maçları günlere göre gruplama
   const groupedMatches = matches.reduce((acc, match) => {
     const dateObj = parseISO(match.date);
     const dateStr = dateObj.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' });
@@ -171,12 +168,11 @@ export default function Matches() {
           const totalHoursLeft = differenceInHours(matchDate, now);
           const isLocked = isAfter(now, matchDate) || totalHoursLeft < 1;
 
-          // Kalan süreyi hesapla
           let timeLeftStr = "";
           if (isAfter(matchDate, now)) {
             const daysLeft = Math.floor(totalHoursLeft / 24);
             const hoursLeft = totalHoursLeft % 24;
-            const minutesLeft = differenceInHours(matchDate, now) === 0 ? differenceInHours(matchDate, now) /* this is 0 */ : Math.floor((matchDate.getTime() - now.getTime()) / (1000 * 60)) % 60;
+            const minutesLeft = differenceInHours(matchDate, now) === 0 ? 0 : Math.floor((matchDate.getTime() - now.getTime()) / (1000 * 60)) % 60;
             
             if (daysLeft > 0) timeLeftStr = `${daysLeft} gün ${hoursLeft} saat`;
             else if (hoursLeft > 0) timeLeftStr = `${hoursLeft} saat ${minutesLeft} dk`;
@@ -184,7 +180,7 @@ export default function Matches() {
           }
 
           return (
-            <div key={match.id} className="glass-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+            <div key={match.id} className="glass-card match-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
               
               {isLocked && (
                 <div style={{ position: 'absolute', top: 0, right: 0, background: 'var(--danger)', color: 'white', padding: '0.25rem 0.5rem', borderRadius: '0 var(--border-radius) 0 8px', fontSize: '0.75rem', fontWeight: 'bold' }}>
@@ -200,54 +196,53 @@ export default function Matches() {
                 {match.status === 'FINISHED' && <div style={{ color: 'var(--success)', fontWeight: 'bold', marginTop: '4px' }}>MAÇ SONUCU: {match.result?.home} - {match.result?.away}</div>}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', width: '100%', justifyContent: 'center' }}>
+              <div className="match-row">
                 {/* Home Team */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                <div className="team-info">
                   {match.homeFlag !== '🌐' ? (
-                     <img src={match.homeFlag} alt={match.homeTeam} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                     <img src={match.homeFlag} alt={match.homeTeam} />
                   ) : (
-                     <span style={{ fontSize: '3rem' }}>🌐</span>
+                     <span className="team-emoji">🌐</span>
                   )}
-                  <span style={{ fontWeight: '600', marginTop: '0.5rem', textAlign: 'center' }}>{match.homeTeam}</span>
+                  <span className="team-name">{match.homeTeam}</span>
                 </div>
 
                 {/* Score Inputs */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="score-inputs">
                   <input 
+                    className="score-input"
                     type="number" 
                     min="0"
                     disabled={isLocked}
                     value={predictions[match.id]?.home ?? ''}
                     onChange={(e) => handlePredictionChange(match.id, 'home', e.target.value)}
-                    style={{ width: '60px', height: '60px', fontSize: '2rem', textAlign: 'center', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', color: 'white', borderRadius: '12px' }}
                   />
-                  <span style={{ fontSize: '1.5rem', color: 'var(--text-secondary)' }}>-</span>
+                  <span className="score-divider">-</span>
                   <input 
+                    className="score-input"
                     type="number" 
                     min="0"
                     disabled={isLocked}
                     value={predictions[match.id]?.away ?? ''}
                     onChange={(e) => handlePredictionChange(match.id, 'away', e.target.value)}
-                    style={{ width: '60px', height: '60px', fontSize: '2rem', textAlign: 'center', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--glass-border)', color: 'white', borderRadius: '12px' }}
                   />
                 </div>
 
                 {/* Away Team */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                <div className="team-info">
                   {match.awayFlag !== '🌐' ? (
-                     <img src={match.awayFlag} alt={match.awayTeam} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                     <img src={match.awayFlag} alt={match.awayTeam} />
                   ) : (
-                     <span style={{ fontSize: '3rem' }}>🌐</span>
+                     <span className="team-emoji">🌐</span>
                   )}
-                  <span style={{ fontWeight: '600', marginTop: '0.5rem', textAlign: 'center' }}>{match.awayTeam}</span>
+                  <span className="team-name">{match.awayTeam}</span>
                 </div>
               </div>
 
               <button 
-                className={`btn ${isLocked ? 'btn-secondary' : 'btn-primary'}`} 
+                className={`btn ${isLocked ? 'btn-secondary' : 'btn-primary'} submit-prediction-btn`} 
                 disabled={isLocked || loading}
                 onClick={() => submitPrediction(match.id)}
-                style={{ marginTop: '1.5rem', width: '200px' }}
               >
                 {isLocked ? 'Kilitlendi' : 'Tahmini Kaydet'}
               </button>
