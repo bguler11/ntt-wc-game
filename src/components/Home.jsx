@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import Matches from './Matches';
+import logo from '../assets/logo.png';
 
 export default function Home() {
   const { currentUser, logout } = useAuth();

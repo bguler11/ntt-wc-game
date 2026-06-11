@@ -12,9 +12,21 @@ export default function Leaderboard() {
   useEffect(() => {
     // Gerçek zamanlı dinleme (onSnapshot) veya tek seferlik getDocs kullanılabilir.
     // Liderlik tablosu sık güncelleneceği için onSnapshot daha etkilidir.
-    const q = query(collection(db, 'users'), orderBy('points', 'desc'), limit(100));
+    const q = query(collection(db, 'users'), limit(100)); // Puan sıralamasını istemcide yapacağız
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const usersData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      let usersData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      
+      // İstemci tarafında Toplam Puan (Ana Puan + Canlı Puan) ve Tam İsabet sayısına göre sırala
+      usersData.sort((a, b) => {
+        const aPoints = (a.points || 0) + (a.livePoints || 0);
+        const bPoints = (b.points || 0) + (b.livePoints || 0);
+        if (bPoints !== aPoints) return bPoints - aPoints;
+        
+        const aExact = a.exactMatches || 0;
+        const bExact = b.exactMatches || 0;
+        return bExact - aExact;
+      });
+
       setUsers(usersData);
       setLoading(false);
     }, (error) => {
@@ -57,32 +69,40 @@ export default function Leaderboard() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user, index) => (
-                  <tr 
-                    key={user.id} 
-                    style={{ 
-                      borderBottom: index !== users.length - 1 ? '1px solid var(--glass-border)' : 'none',
-                      backgroundColor: index === 0 ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
-                      transition: 'var(--transition)'
-                    }}
-                  >
-                    <td style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold', fontSize: index < 3 ? '1.25rem' : '1rem' }}>
-                      {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
-                    </td>
-                    <td style={{ padding: '1rem' }}>
-                      {/* Daha eski kullanıcıların username'i yoksa e-postasının başını kullan fallback olarak */}
-                      <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '1.1rem' }}>
-                        {user.username || user.email?.split('@')[0] || 'İsimsiz Oyuncu'}
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                        Tam Skor: {user.exactMatches || 0} | Kazanan: {user.correctWinners || 0}
-                      </div>
-                    </td>
-                    <td style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold', fontSize: '1.25rem', color: 'var(--accent-primary)' }}>
-                      {user.points || 0}
-                    </td>
-                  </tr>
-                ))}
+                {users.map((user, index) => {
+                  const totalPoints = (user.points || 0) + (user.livePoints || 0);
+                  const hasLivePoints = (user.livePoints || 0) > 0;
+                  return (
+                    <tr 
+                      key={user.id} 
+                      style={{ 
+                        borderBottom: index !== users.length - 1 ? '1px solid var(--glass-border)' : 'none',
+                        backgroundColor: index === 0 ? 'rgba(245, 158, 11, 0.1)' : hasLivePoints ? 'rgba(16, 185, 129, 0.05)' : 'transparent',
+                        transition: 'var(--transition)'
+                      }}
+                    >
+                      <td style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold', fontSize: index < 3 ? '1.25rem' : '1rem' }}>
+                        {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
+                      </td>
+                      <td style={{ padding: '1rem' }}>
+                        <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '1.1rem' }}>
+                          {user.username || user.email?.split('@')[0] || 'İsimsiz Oyuncu'}
+                        </div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                          Tam Skor (3p): {user.exactMatches || 0} | Fark (2p): {user.diffMatches || 0} | Taraf (1p): {user.correctWinners || 0}
+                        </div>
+                      </td>
+                      <td style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold', fontSize: '1.25rem', color: 'var(--accent-primary)', position: 'relative' }}>
+                        {totalPoints}
+                        {hasLivePoints && (
+                          <div style={{ fontSize: '0.7rem', color: 'var(--success)', marginTop: '2px', fontWeight: 'bold' }}>
+                            (+{user.livePoints} Canlı)
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
