@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, AlertCircle } from 'lucide-react';
+import { db } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function Register() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -20,10 +23,27 @@ export default function Register() {
       return setError('Şifreler eşleşmiyor.');
     }
 
+    if (username.length < 3) {
+      return setError('Kullanıcı adı en az 3 karakter olmalıdır.');
+    }
+
     try {
       setError('');
       setLoading(true);
-      await signup(email, password);
+      
+      // Kullanıcıyı oluştur
+      const userCredential = await signup(email, password);
+      
+      // Firestore 'users' koleksiyonuna kaydet
+      await setDoc(doc(db, 'users', userCredential.user.uid), {
+        username: username,
+        email: email,
+        points: 0,
+        exactMatches: 0,
+        correctWinners: 0,
+        createdAt: new Date()
+      });
+
       navigate('/');
     } catch (err) {
       setError('Hesap oluşturulamadı. Şifreniz en az 6 karakter olmalı veya bu e-posta zaten kullanılıyor olabilir.');
@@ -46,6 +66,18 @@ export default function Register() {
         )}
 
         <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Kullanıcı Adı</label>
+            <input 
+              type="text" 
+              id="username" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)} 
+              placeholder="Ahmet123"
+              required 
+            />
+          </div>
+
           <div className="input-group">
             <label htmlFor="email">E-posta</label>
             <input 

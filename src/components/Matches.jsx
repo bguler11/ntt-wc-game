@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, onSnapshot, doc, setDoc, query, orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, doc, setDoc, query, orderBy, where } from 'firebase/firestore';
 import { useAuth } from '../contexts/AuthContext';
 import { differenceInHours, parseISO, isAfter } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function Matches() {
   const [matches, setMatches] = useState([]);
@@ -23,6 +24,29 @@ export default function Matches() {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (!currentUser) return;
+    
+    // Kullanıcının daha önce yaptığı tahminleri Firestore'dan çekiyoruz
+    const qPred = query(collection(db, 'predictions'), where('userId', '==', currentUser.uid));
+    const unsubscribePred = onSnapshot(qPred, (querySnapshot) => {
+      const preds = {};
+      querySnapshot.forEach(doc => {
+        const data = doc.data();
+        preds[data.matchId] = {
+          home: data.homeScore,
+          away: data.awayScore
+        };
+      });
+      // Sadece veritabanından gelen ilk yüklemede veya başka sekmeden güncellendiğinde state'i değiştir
+      setPredictions(prev => ({ ...prev, ...preds }));
+    }, (error) => {
+      console.error("Tahminler çekilemedi:", error);
+    });
+
+    return () => unsubscribePred();
+  }, [currentUser]);
 
   const handlePredictionChange = (matchId, team, value) => {
     if (value < 0) return;
@@ -45,13 +69,13 @@ export default function Matches() {
     const hoursDifference = differenceInHours(matchDate, now);
     
     if (isAfter(now, matchDate) || hoursDifference < 1) {
-      alert("Bu maç için tahmin süresi dolmuştur! (Maça 1 saatten az kaldı veya maç başladı)");
+      toast.error("Bu maç için tahmin süresi dolmuştur! (Maça 1 saatten az kaldı veya maç başladı)");
       return;
     }
 
     const prediction = predictions[matchId];
     if (!prediction || prediction.home === undefined || prediction.away === undefined || prediction.home === '' || prediction.away === '') {
-      alert("Lütfen her iki takım için de skor giriniz.");
+      toast.error("Lütfen her iki takım için de skor giriniz.");
       return;
     }
 
@@ -65,10 +89,10 @@ export default function Matches() {
         awayScore: Number(prediction.away),
         updatedAt: new Date()
       });
-      alert("Tahmininiz başarıyla kaydedildi!");
+      toast.success("Tahmininiz başarıyla kaydedildi!");
     } catch (error) {
       console.error("Tahmin kaydedilirken hata oluştu:", error);
-      alert("Hata oluştu. Veritabanı bağlantınızı kontrol edin.");
+      toast.error("Hata oluştu. Veritabanı bağlantınızı kontrol edin.");
     }
     setLoading(false);
   };
@@ -143,8 +167,21 @@ export default function Matches() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         {currentMatches.map(match => {
           const matchDate = parseISO(match.date);
-          const hoursLeft = differenceInHours(matchDate, new Date());
-          const isLocked = isAfter(new Date(), matchDate) || hoursLeft < 1;
+          const now = new Date();
+          const totalHoursLeft = differenceInHours(matchDate, now);
+          const isLocked = isAfter(now, matchDate) || totalHoursLeft < 1;
+
+          // Kalan süreyi hesapla
+          let timeLeftStr = "";
+          if (isAfter(matchDate, now)) {
+            const daysLeft = Math.floor(totalHoursLeft / 24);
+            const hoursLeft = totalHoursLeft % 24;
+            const minutesLeft = differenceInHours(matchDate, now) === 0 ? differenceInHours(matchDate, now) /* this is 0 */ : Math.floor((matchDate.getTime() - now.getTime()) / (1000 * 60)) % 60;
+            
+            if (daysLeft > 0) timeLeftStr = `${daysLeft} gün ${hoursLeft} saat`;
+            else if (hoursLeft > 0) timeLeftStr = `${hoursLeft} saat ${minutesLeft} dk`;
+            else timeLeftStr = `${minutesLeft} dk`;
+          }
 
           return (
             <div key={match.id} className="glass-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
@@ -155,8 +192,11 @@ export default function Matches() {
                 </div>
               )}
 
-              <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1rem', textAlign: 'center' }}>
-                <div>Saat: {matchDate.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</div>
+              <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1rem', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <div>
+                  <span style={{ fontWeight: '600', color: 'white' }}>Saat: {matchDate.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</span>
+                  {timeLeftStr && <span style={{ marginLeft: '0.5rem', color: 'var(--accent-primary)' }}>({timeLeftStr} kaldı)</span>}
+                </div>
                 {match.status === 'FINISHED' && <div style={{ color: 'var(--success)', fontWeight: 'bold', marginTop: '4px' }}>MAÇ SONUCU: {match.result?.home} - {match.result?.away}</div>}
               </div>
 
