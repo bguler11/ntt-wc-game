@@ -66,11 +66,19 @@ async function syncMatches() {
 
       if (existingDocSnap.exists()) {
         const existingData = existingDocSnap.data();
-        // KORUMA: Eğer ana API maç "TIMED" diyor ama veritabanımızda "IN_PLAY", "PAUSED" veya "FINISHED" ise
-        // Ana API'nin gecikmeli null-null verisiyle guncel skoru ezmesini engelle.
+        // 1. Durum Koruması: Eğer ana API maç "TIMED" diyor ama veritabanımızda "IN_PLAY", "PAUSED" veya "FINISHED" ise
         if (m.status === 'TIMED' && ['IN_PLAY', 'PAUSED', 'FINISHED'].includes(existingData.status)) {
            matchDoc.status = existingData.status;
            matchDoc.result = existingData.result;
+        }
+
+        // 2. Skor Koruması: Ana API "FINISHED" veya "IN_PLAY" diyor ama skoru 'null' gönderiyorsa, canlı API'den gelen skoru koru.
+        if (matchDoc.result.home === null && existingData.result && existingData.result.home !== null) {
+           matchDoc.result = existingData.result;
+           // Ayrıca eğer API 'IN_PLAY' diyor ama bizde 'FINISHED' ise ve skoru null yolluyorsa durumu da koru
+           if (m.status === 'IN_PLAY' && existingData.status === 'FINISHED') {
+             matchDoc.status = existingData.status;
+           }
         }
       }
 

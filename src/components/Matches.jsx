@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { db } from '../firebase';
 import { collection, onSnapshot, doc, setDoc, query, orderBy, where, getDocs } from 'firebase/firestore';
 import { useAuth } from '../contexts/AuthContext';
@@ -10,7 +10,11 @@ export default function Matches() {
   const [predictions, setPredictions] = useState({});
   const [loading, setLoading] = useState(false);
   const [currentDateIndex, setCurrentDateIndex] = useState(0);
+  const initialDateSet = useRef(false);
   const { currentUser } = useAuth();
+
+  const [dailyLeaders, setDailyLeaders] = useState([]);
+  const [loadingDailyLeaders, setLoadingDailyLeaders] = useState(false);
 
   // Custom Toast State
   const [toastMsg, setToastMsg] = useState(null);
@@ -34,6 +38,29 @@ export default function Matches() {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const matchesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setMatches(matchesData);
+
+      if (matchesData.length > 0 && !initialDateSet.current) {
+        initialDateSet.current = true;
+        const grouped = matchesData.reduce((acc, match) => {
+          const dateObj = parseISO(match.date);
+          const dateStr = dateObj.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' });
+          if (!acc[dateStr]) acc[dateStr] = [];
+          acc[dateStr].push(match);
+          return acc;
+        }, {});
+        
+        const keys = Object.keys(grouped);
+        const todayStr = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' });
+        
+        let idx = keys.findIndex(k => k === todayStr);
+        if (idx === -1) {
+          const now = new Date();
+          idx = keys.findIndex(k => isAfter(parseISO(grouped[k][0].date), now));
+        }
+        if (idx === -1) idx = Math.max(0, keys.length - 1);
+        
+        setCurrentDateIndex(idx);
+      }
     }, (error) => {
       console.error("Maçlar çekilemedi:", error);
     });
@@ -144,15 +171,6 @@ export default function Matches() {
     setLoadingModal(false);
   };
 
-  if (matches.length === 0) {
-    return (
-      <div className="glass-card" style={{ textAlign: 'center', padding: '3rem' }}>
-        <h2>Maçlar Yükleniyor...</h2>
-        <p style={{ color: 'var(--text-secondary)' }}>Eğer uzun sürerse veritabanınızı kontrol edin.</p>
-      </div>
-    );
-  }
-
   const groupedMatches = matches.reduce((acc, match) => {
     const dateObj = parseISO(match.date);
     const dateStr = dateObj.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' });
@@ -172,6 +190,85 @@ export default function Matches() {
   const handleNextDay = () => {
     setCurrentDateIndex(prev => Math.min(dateKeys.length - 1, prev + 1));
   };
+
+  useEffect(() => {
+    if (!currentMatches || currentMatches.length === 0) {
+      setDailyLeaders([]);
+      return;
+    }
+
+    const activeMatches = currentMatches.filter(m => 
+      ['IN_PLAY', 'PAUSED', 'FINISHED'].includes(m.status) && 
+      m.result?.home !== null && m.result?.away !== null &&
+      m.result?.home !== undefined && m.result?.away !== undefined
+    );
+    
+    if (activeMatches.length === 0) {
+      setDailyLeaders([]);
+      return;
+    }
+
+    const matchIds = activeMatches.map(m => m.id);
+    
+    const fetchDailyLeaders = async () => {
+      setLoadingDailyLeaders(true);
+      try {
+        const q = query(collection(db, 'predictions'), where('matchId', 'in', matchIds));
+        const snap = await getDocs(q);
+        
+        const userPoints = {};
+        
+        snap.forEach(doc => {
+          const pred = doc.data();
+          const match = activeMatches.find(m => m.id === pred.matchId);
+          if (!match) return;
+
+          const predHome = Number(pred.homeScore);
+          const predAway = Number(pred.awayScore);
+          const actualHome = Number(match.result.home);
+          const actualAway = Number(match.result.away);
+
+          const actualDiff = actualHome - actualAway;
+          const predDiff = predHome - predAway;
+
+          const isExact = (actualHome === predHome && actualAway === predAway);
+          const isDiff = (actualDiff === predDiff);
+          const isWinner = (Math.sign(actualDiff) === Math.sign(predDiff));
+
+          let points = 0;
+          if (isExact) points = 3;
+          else if (isDiff) points = 2;
+          else if (isWinner) points = 1;
+
+          if (points > 0 && pred.userId) {
+            if (!userPoints[pred.userId]) userPoints[pred.userId] = 0;
+            userPoints[pred.userId] += points;
+          }
+        });
+
+        const leaders = Object.entries(userPoints)
+          .map(([userId, points]) => ({ userId, points }))
+          .sort((a, b) => b.points - a.points)
+          .slice(0, 3);
+          
+        setDailyLeaders(leaders);
+      } catch (err) {
+        console.error("Günün yıldızları hesaplanamadı", err);
+      }
+      setLoadingDailyLeaders(false);
+    };
+
+    fetchDailyLeaders();
+  }, [currentDateIndex, matches]);
+
+  if (matches.length === 0) {
+    return (
+      <div className="glass-card" style={{ textAlign: 'center', padding: '3rem' }}>
+        <h2>Maçlar Yükleniyor...</h2>
+        <p style={{ color: 'var(--text-secondary)' }}>Eğer uzun sürerse veritabanınızı kontrol edin.</p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', position: 'relative' }}>
@@ -228,6 +325,31 @@ export default function Matches() {
           <ChevronRight size={24} />
         </button>
       </div>
+
+      {/* Günün Yıldızları */}
+      {dailyLeaders.length > 0 && (
+        <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
+          <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--warning)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            🌟 Günün Yıldızları 🌟
+          </h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', marginTop: 0 }}>
+            {loadingDailyLeaders ? "Puanlar hesaplanıyor..." : "Oynanan maçlarda en yüksek puanı toplayan günün en iyi kahinleri!"}
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            {dailyLeaders.map((leader, index) => {
+              const name = usersMap[leader.userId]?.username || usersMap[leader.userId]?.email?.split('@')[0] || 'Gizemli Oyuncu';
+              const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+              return (
+                <div key={leader.userId} style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem 1rem', borderRadius: '12px', minWidth: '120px' }}>
+                  <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{medal}</div>
+                  <div style={{ fontWeight: 'bold', color: 'white' }}>{name}</div>
+                  <div style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>{leader.points} Puan</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Seçili Günün Maçları */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
