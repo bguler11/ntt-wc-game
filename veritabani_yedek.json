@@ -1,0 +1,1872 @@
+{
+  "matches": {
+    "537327": {
+      "id": "537327",
+      "homeTeam": "Mexico",
+      "awayTeam": "South Africa",
+      "homeFlag": "https://crests.football-data.org/769.svg",
+      "awayFlag": "https://crests.football-data.org/9396.svg",
+      "date": "2026-06-11T19:00:00Z",
+      "status": "IN_PLAY",
+      "result": {
+        "home": 1,
+        "away": 0
+      }
+    },
+    "537328": {
+      "id": "537328",
+      "homeTeam": "South Korea",
+      "awayTeam": "Czechia",
+      "homeFlag": "https://crests.football-data.org/772.png",
+      "awayFlag": "https://crests.football-data.org/798.svg",
+      "date": "2026-06-12T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537329": {
+      "id": "537329",
+      "homeTeam": "Czechia",
+      "awayTeam": "South Africa",
+      "homeFlag": "https://crests.football-data.org/798.svg",
+      "awayFlag": "https://crests.football-data.org/9396.svg",
+      "date": "2026-06-18T16:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537330": {
+      "id": "537330",
+      "homeTeam": "Mexico",
+      "awayTeam": "South Korea",
+      "homeFlag": "https://crests.football-data.org/769.svg",
+      "awayFlag": "https://crests.football-data.org/772.png",
+      "date": "2026-06-19T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537331": {
+      "id": "537331",
+      "homeTeam": "Czechia",
+      "awayTeam": "Mexico",
+      "homeFlag": "https://crests.football-data.org/798.svg",
+      "awayFlag": "https://crests.football-data.org/769.svg",
+      "date": "2026-06-25T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537332": {
+      "id": "537332",
+      "homeTeam": "South Africa",
+      "awayTeam": "South Korea",
+      "homeFlag": "https://crests.football-data.org/9396.svg",
+      "awayFlag": "https://crests.football-data.org/772.png",
+      "date": "2026-06-25T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537333": {
+      "id": "537333",
+      "homeTeam": "Canada",
+      "awayTeam": "Bosnia-Herzegovina",
+      "homeFlag": "https://crests.football-data.org/canada.svg",
+      "awayFlag": "https://crests.football-data.org/bosnia.svg",
+      "date": "2026-06-12T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537334": {
+      "id": "537334",
+      "homeTeam": "Qatar",
+      "awayTeam": "Switzerland",
+      "homeFlag": "https://crests.football-data.org/8030.svg",
+      "awayFlag": "https://crests.football-data.org/788.svg",
+      "date": "2026-06-13T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537335": {
+      "id": "537335",
+      "homeTeam": "Switzerland",
+      "awayTeam": "Bosnia-Herzegovina",
+      "homeFlag": "https://crests.football-data.org/788.svg",
+      "awayFlag": "https://crests.football-data.org/bosnia.svg",
+      "date": "2026-06-18T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537336": {
+      "id": "537336",
+      "homeTeam": "Canada",
+      "awayTeam": "Qatar",
+      "homeFlag": "https://crests.football-data.org/canada.svg",
+      "awayFlag": "https://crests.football-data.org/8030.svg",
+      "date": "2026-06-18T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537337": {
+      "id": "537337",
+      "homeTeam": "Switzerland",
+      "awayTeam": "Canada",
+      "homeFlag": "https://crests.football-data.org/788.svg",
+      "awayFlag": "https://crests.football-data.org/canada.svg",
+      "date": "2026-06-24T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537338": {
+      "id": "537338",
+      "homeTeam": "Bosnia-Herzegovina",
+      "awayTeam": "Qatar",
+      "homeFlag": "https://crests.football-data.org/bosnia.svg",
+      "awayFlag": "https://crests.football-data.org/8030.svg",
+      "date": "2026-06-24T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537339": {
+      "id": "537339",
+      "homeTeam": "Brazil",
+      "awayTeam": "Morocco",
+      "homeFlag": "https://crests.football-data.org/764.svg",
+      "awayFlag": "https://crests.football-data.org/morocco.svg",
+      "date": "2026-06-13T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537340": {
+      "id": "537340",
+      "homeTeam": "Haiti",
+      "awayTeam": "Scotland",
+      "homeFlag": "https://crests.football-data.org/haiti.svg",
+      "awayFlag": "https://crests.football-data.org/814.svg",
+      "date": "2026-06-14T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537341": {
+      "id": "537341",
+      "homeTeam": "Brazil",
+      "awayTeam": "Haiti",
+      "homeFlag": "https://crests.football-data.org/764.svg",
+      "awayFlag": "https://crests.football-data.org/haiti.svg",
+      "date": "2026-06-20T00:30:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537342": {
+      "id": "537342",
+      "homeTeam": "Scotland",
+      "awayTeam": "Morocco",
+      "homeFlag": "https://crests.football-data.org/814.svg",
+      "awayFlag": "https://crests.football-data.org/morocco.svg",
+      "date": "2026-06-19T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537343": {
+      "id": "537343",
+      "homeTeam": "Scotland",
+      "awayTeam": "Brazil",
+      "homeFlag": "https://crests.football-data.org/814.svg",
+      "awayFlag": "https://crests.football-data.org/764.svg",
+      "date": "2026-06-24T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537344": {
+      "id": "537344",
+      "homeTeam": "Morocco",
+      "awayTeam": "Haiti",
+      "homeFlag": "https://crests.football-data.org/morocco.svg",
+      "awayFlag": "https://crests.football-data.org/haiti.svg",
+      "date": "2026-06-24T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537345": {
+      "id": "537345",
+      "homeTeam": "United States",
+      "awayTeam": "Paraguay",
+      "homeFlag": "https://crests.football-data.org/usa.svg",
+      "awayFlag": "https://crests.football-data.org/761.svg",
+      "date": "2026-06-13T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537346": {
+      "id": "537346",
+      "homeTeam": "Australia",
+      "awayTeam": "Turkey",
+      "homeFlag": "https://crests.football-data.org/779.svg",
+      "awayFlag": "https://crests.football-data.org/803.svg",
+      "date": "2026-06-14T04:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537347": {
+      "id": "537347",
+      "homeTeam": "Turkey",
+      "awayTeam": "Paraguay",
+      "homeFlag": "https://crests.football-data.org/803.svg",
+      "awayFlag": "https://crests.football-data.org/761.svg",
+      "date": "2026-06-20T03:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537348": {
+      "id": "537348",
+      "homeTeam": "United States",
+      "awayTeam": "Australia",
+      "homeFlag": "https://crests.football-data.org/usa.svg",
+      "awayFlag": "https://crests.football-data.org/779.svg",
+      "date": "2026-06-19T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537349": {
+      "id": "537349",
+      "homeTeam": "Turkey",
+      "awayTeam": "United States",
+      "homeFlag": "https://crests.football-data.org/803.svg",
+      "awayFlag": "https://crests.football-data.org/usa.svg",
+      "date": "2026-06-26T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537350": {
+      "id": "537350",
+      "homeTeam": "Paraguay",
+      "awayTeam": "Australia",
+      "homeFlag": "https://crests.football-data.org/761.svg",
+      "awayFlag": "https://crests.football-data.org/779.svg",
+      "date": "2026-06-26T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537351": {
+      "id": "537351",
+      "homeTeam": "Germany",
+      "awayTeam": "Curaçao",
+      "homeFlag": "https://crests.football-data.org/759.svg",
+      "awayFlag": "https://crests.football-data.org/curacao.svg",
+      "date": "2026-06-14T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537352": {
+      "id": "537352",
+      "homeTeam": "Ivory Coast",
+      "awayTeam": "Ecuador",
+      "homeFlag": "https://crests.football-data.org/787.svg",
+      "awayFlag": "https://crests.football-data.org/791.svg",
+      "date": "2026-06-14T23:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537353": {
+      "id": "537353",
+      "homeTeam": "Germany",
+      "awayTeam": "Ivory Coast",
+      "homeFlag": "https://crests.football-data.org/759.svg",
+      "awayFlag": "https://crests.football-data.org/787.svg",
+      "date": "2026-06-20T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537354": {
+      "id": "537354",
+      "homeTeam": "Ecuador",
+      "awayTeam": "Curaçao",
+      "homeFlag": "https://crests.football-data.org/791.svg",
+      "awayFlag": "https://crests.football-data.org/curacao.svg",
+      "date": "2026-06-21T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537355": {
+      "id": "537355",
+      "homeTeam": "Ecuador",
+      "awayTeam": "Germany",
+      "homeFlag": "https://crests.football-data.org/791.svg",
+      "awayFlag": "https://crests.football-data.org/759.svg",
+      "date": "2026-06-25T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537356": {
+      "id": "537356",
+      "homeTeam": "Curaçao",
+      "awayTeam": "Ivory Coast",
+      "homeFlag": "https://crests.football-data.org/curacao.svg",
+      "awayFlag": "https://crests.football-data.org/787.svg",
+      "date": "2026-06-25T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537357": {
+      "id": "537357",
+      "homeTeam": "Netherlands",
+      "awayTeam": "Japan",
+      "homeFlag": "https://crests.football-data.org/8601.svg",
+      "awayFlag": "https://crests.football-data.org/766.svg",
+      "date": "2026-06-14T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537358": {
+      "id": "537358",
+      "homeTeam": "Sweden",
+      "awayTeam": "Tunisia",
+      "homeFlag": "https://crests.football-data.org/792.svg",
+      "awayFlag": "https://crests.football-data.org/tunisia.svg",
+      "date": "2026-06-15T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537359": {
+      "id": "537359",
+      "homeTeam": "Netherlands",
+      "awayTeam": "Sweden",
+      "homeFlag": "https://crests.football-data.org/8601.svg",
+      "awayFlag": "https://crests.football-data.org/792.svg",
+      "date": "2026-06-20T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537360": {
+      "id": "537360",
+      "homeTeam": "Tunisia",
+      "awayTeam": "Japan",
+      "homeFlag": "https://crests.football-data.org/tunisia.svg",
+      "awayFlag": "https://crests.football-data.org/766.svg",
+      "date": "2026-06-21T04:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537361": {
+      "id": "537361",
+      "homeTeam": "Tunisia",
+      "awayTeam": "Netherlands",
+      "homeFlag": "https://crests.football-data.org/tunisia.svg",
+      "awayFlag": "https://crests.football-data.org/8601.svg",
+      "date": "2026-06-25T23:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537362": {
+      "id": "537362",
+      "homeTeam": "Japan",
+      "awayTeam": "Sweden",
+      "homeFlag": "https://crests.football-data.org/766.svg",
+      "awayFlag": "https://crests.football-data.org/792.svg",
+      "date": "2026-06-25T23:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537363": {
+      "id": "537363",
+      "homeTeam": "Belgium",
+      "awayTeam": "Egypt",
+      "homeFlag": "https://crests.football-data.org/805.svg",
+      "awayFlag": "https://crests.football-data.org/825.svg",
+      "date": "2026-06-15T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537364": {
+      "id": "537364",
+      "homeTeam": "Iran",
+      "awayTeam": "New Zealand",
+      "homeFlag": "https://crests.football-data.org/iran.svg",
+      "awayFlag": "https://crests.football-data.org/783.svg",
+      "date": "2026-06-16T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537365": {
+      "id": "537365",
+      "homeTeam": "Belgium",
+      "awayTeam": "Iran",
+      "homeFlag": "https://crests.football-data.org/805.svg",
+      "awayFlag": "https://crests.football-data.org/iran.svg",
+      "date": "2026-06-21T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537366": {
+      "id": "537366",
+      "homeTeam": "New Zealand",
+      "awayTeam": "Egypt",
+      "homeFlag": "https://crests.football-data.org/783.svg",
+      "awayFlag": "https://crests.football-data.org/825.svg",
+      "date": "2026-06-22T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537367": {
+      "id": "537367",
+      "homeTeam": "New Zealand",
+      "awayTeam": "Belgium",
+      "homeFlag": "https://crests.football-data.org/783.svg",
+      "awayFlag": "https://crests.football-data.org/805.svg",
+      "date": "2026-06-27T03:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537368": {
+      "id": "537368",
+      "homeTeam": "Egypt",
+      "awayTeam": "Iran",
+      "homeFlag": "https://crests.football-data.org/825.svg",
+      "awayFlag": "https://crests.football-data.org/iran.svg",
+      "date": "2026-06-27T03:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537369": {
+      "id": "537369",
+      "homeTeam": "Spain",
+      "awayTeam": "Cape Verde Islands",
+      "homeFlag": "https://crests.football-data.org/760.svg",
+      "awayFlag": "https://crests.football-data.org/cape_verde.svg",
+      "date": "2026-06-15T16:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537370": {
+      "id": "537370",
+      "homeTeam": "Saudi Arabia",
+      "awayTeam": "Uruguay",
+      "homeFlag": "https://crests.football-data.org/saudi_arabia.svg",
+      "awayFlag": "https://crests.football-data.org/758.svg",
+      "date": "2026-06-15T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537371": {
+      "id": "537371",
+      "homeTeam": "Spain",
+      "awayTeam": "Saudi Arabia",
+      "homeFlag": "https://crests.football-data.org/760.svg",
+      "awayFlag": "https://crests.football-data.org/saudi_arabia.svg",
+      "date": "2026-06-21T16:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537372": {
+      "id": "537372",
+      "homeTeam": "Uruguay",
+      "awayTeam": "Cape Verde Islands",
+      "homeFlag": "https://crests.football-data.org/758.svg",
+      "awayFlag": "https://crests.football-data.org/cape_verde.svg",
+      "date": "2026-06-21T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537373": {
+      "id": "537373",
+      "homeTeam": "Uruguay",
+      "awayTeam": "Spain",
+      "homeFlag": "https://crests.football-data.org/758.svg",
+      "awayFlag": "https://crests.football-data.org/760.svg",
+      "date": "2026-06-27T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537374": {
+      "id": "537374",
+      "homeTeam": "Cape Verde Islands",
+      "awayTeam": "Saudi Arabia",
+      "homeFlag": "https://crests.football-data.org/cape_verde.svg",
+      "awayFlag": "https://crests.football-data.org/saudi_arabia.svg",
+      "date": "2026-06-27T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537375": {
+      "id": "537375",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-04T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537376": {
+      "id": "537376",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-04T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537377": {
+      "id": "537377",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-05T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537378": {
+      "id": "537378",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-06T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537379": {
+      "id": "537379",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-06T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537380": {
+      "id": "537380",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-07T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537381": {
+      "id": "537381",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-07T16:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537382": {
+      "id": "537382",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-07T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537383": {
+      "id": "537383",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-09T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537384": {
+      "id": "537384",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-10T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537385": {
+      "id": "537385",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-11T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537386": {
+      "id": "537386",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-12T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537387": {
+      "id": "537387",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-14T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537388": {
+      "id": "537388",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-15T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537389": {
+      "id": "537389",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-18T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537390": {
+      "id": "537390",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-19T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537391": {
+      "id": "537391",
+      "homeTeam": "France",
+      "awayTeam": "Senegal",
+      "homeFlag": "https://crests.football-data.org/773.svg",
+      "awayFlag": "https://crests.football-data.org/senegal.svg",
+      "date": "2026-06-16T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537392": {
+      "id": "537392",
+      "homeTeam": "Iraq",
+      "awayTeam": "Norway",
+      "homeFlag": "https://crests.football-data.org/iraq.svg",
+      "awayFlag": "https://crests.football-data.org/813.svg",
+      "date": "2026-06-16T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537393": {
+      "id": "537393",
+      "homeTeam": "France",
+      "awayTeam": "Iraq",
+      "homeFlag": "https://crests.football-data.org/773.svg",
+      "awayFlag": "https://crests.football-data.org/iraq.svg",
+      "date": "2026-06-22T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537394": {
+      "id": "537394",
+      "homeTeam": "Norway",
+      "awayTeam": "Senegal",
+      "homeFlag": "https://crests.football-data.org/813.svg",
+      "awayFlag": "https://crests.football-data.org/senegal.svg",
+      "date": "2026-06-23T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537395": {
+      "id": "537395",
+      "homeTeam": "Norway",
+      "awayTeam": "France",
+      "homeFlag": "https://crests.football-data.org/813.svg",
+      "awayFlag": "https://crests.football-data.org/773.svg",
+      "date": "2026-06-26T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537396": {
+      "id": "537396",
+      "homeTeam": "Senegal",
+      "awayTeam": "Iraq",
+      "homeFlag": "https://crests.football-data.org/senegal.svg",
+      "awayFlag": "https://crests.football-data.org/iraq.svg",
+      "date": "2026-06-26T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537397": {
+      "id": "537397",
+      "homeTeam": "Argentina",
+      "awayTeam": "Algeria",
+      "homeFlag": "https://crests.football-data.org/762.png",
+      "awayFlag": "https://crests.football-data.org/algeria.svg",
+      "date": "2026-06-17T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537398": {
+      "id": "537398",
+      "homeTeam": "Austria",
+      "awayTeam": "Jordan",
+      "homeFlag": "https://crests.football-data.org/816.svg",
+      "awayFlag": "https://crests.football-data.org/8049.png",
+      "date": "2026-06-17T04:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537399": {
+      "id": "537399",
+      "homeTeam": "Argentina",
+      "awayTeam": "Austria",
+      "homeFlag": "https://crests.football-data.org/762.png",
+      "awayFlag": "https://crests.football-data.org/816.svg",
+      "date": "2026-06-22T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537400": {
+      "id": "537400",
+      "homeTeam": "Jordan",
+      "awayTeam": "Algeria",
+      "homeFlag": "https://crests.football-data.org/8049.png",
+      "awayFlag": "https://crests.football-data.org/algeria.svg",
+      "date": "2026-06-23T03:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537401": {
+      "id": "537401",
+      "homeTeam": "Jordan",
+      "awayTeam": "Argentina",
+      "homeFlag": "https://crests.football-data.org/8049.png",
+      "awayFlag": "https://crests.football-data.org/762.png",
+      "date": "2026-06-28T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537402": {
+      "id": "537402",
+      "homeTeam": "Algeria",
+      "awayTeam": "Austria",
+      "homeFlag": "https://crests.football-data.org/algeria.svg",
+      "awayFlag": "https://crests.football-data.org/816.svg",
+      "date": "2026-06-28T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537403": {
+      "id": "537403",
+      "homeTeam": "Portugal",
+      "awayTeam": "Congo DR",
+      "homeFlag": "https://crests.football-data.org/765.svg",
+      "awayFlag": "https://crests.football-data.org/congo_dr.svg",
+      "date": "2026-06-17T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537404": {
+      "id": "537404",
+      "homeTeam": "Uzbekistan",
+      "awayTeam": "Colombia",
+      "homeFlag": "https://crests.football-data.org/8070.png",
+      "awayFlag": "https://crests.football-data.org/818.svg",
+      "date": "2026-06-18T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537405": {
+      "id": "537405",
+      "homeTeam": "Portugal",
+      "awayTeam": "Uzbekistan",
+      "homeFlag": "https://crests.football-data.org/765.svg",
+      "awayFlag": "https://crests.football-data.org/8070.png",
+      "date": "2026-06-23T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537406": {
+      "id": "537406",
+      "homeTeam": "Colombia",
+      "awayTeam": "Congo DR",
+      "homeFlag": "https://crests.football-data.org/818.svg",
+      "awayFlag": "https://crests.football-data.org/congo_dr.svg",
+      "date": "2026-06-24T02:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537407": {
+      "id": "537407",
+      "homeTeam": "Colombia",
+      "awayTeam": "Portugal",
+      "homeFlag": "https://crests.football-data.org/818.svg",
+      "awayFlag": "https://crests.football-data.org/765.svg",
+      "date": "2026-06-27T23:30:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537408": {
+      "id": "537408",
+      "homeTeam": "Congo DR",
+      "awayTeam": "Uzbekistan",
+      "homeFlag": "https://crests.football-data.org/congo_dr.svg",
+      "awayFlag": "https://crests.football-data.org/8070.png",
+      "date": "2026-06-27T23:30:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537409": {
+      "id": "537409",
+      "homeTeam": "England",
+      "awayTeam": "Croatia",
+      "homeFlag": "https://crests.football-data.org/770.svg",
+      "awayFlag": "https://crests.football-data.org/799.svg",
+      "date": "2026-06-17T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537410": {
+      "id": "537410",
+      "homeTeam": "Ghana",
+      "awayTeam": "Panama",
+      "homeFlag": "https://crests.football-data.org/ghana.svg",
+      "awayFlag": "https://crests.football-data.org/panama.svg",
+      "date": "2026-06-17T23:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537411": {
+      "id": "537411",
+      "homeTeam": "England",
+      "awayTeam": "Ghana",
+      "homeFlag": "https://crests.football-data.org/770.svg",
+      "awayFlag": "https://crests.football-data.org/ghana.svg",
+      "date": "2026-06-23T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537412": {
+      "id": "537412",
+      "homeTeam": "Panama",
+      "awayTeam": "Croatia",
+      "homeFlag": "https://crests.football-data.org/panama.svg",
+      "awayFlag": "https://crests.football-data.org/799.svg",
+      "date": "2026-06-23T23:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537413": {
+      "id": "537413",
+      "homeTeam": "Panama",
+      "awayTeam": "England",
+      "homeFlag": "https://crests.football-data.org/panama.svg",
+      "awayFlag": "https://crests.football-data.org/770.svg",
+      "date": "2026-06-27T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537414": {
+      "id": "537414",
+      "homeTeam": "Croatia",
+      "awayTeam": "Ghana",
+      "homeFlag": "https://crests.football-data.org/799.svg",
+      "awayFlag": "https://crests.football-data.org/ghana.svg",
+      "date": "2026-06-27T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537415": {
+      "id": "537415",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-06-29T20:30:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537416": {
+      "id": "537416",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-06-30T21:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537417": {
+      "id": "537417",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-06-28T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537418": {
+      "id": "537418",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-06-30T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537419": {
+      "id": "537419",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-02T23:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537420": {
+      "id": "537420",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-02T19:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537421": {
+      "id": "537421",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-02T00:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537422": {
+      "id": "537422",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-01T20:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537423": {
+      "id": "537423",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-06-29T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537424": {
+      "id": "537424",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-06-30T17:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537425": {
+      "id": "537425",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-01T01:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537426": {
+      "id": "537426",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-01T16:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537427": {
+      "id": "537427",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-03T22:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537428": {
+      "id": "537428",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-03T18:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537429": {
+      "id": "537429",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-03T03:00:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    },
+    "537430": {
+      "id": "537430",
+      "homeTeam": "Belirsiz",
+      "awayTeam": "Belirsiz",
+      "homeFlag": "🌐",
+      "awayFlag": "🌐",
+      "date": "2026-07-04T01:30:00Z",
+      "status": "TIMED",
+      "result": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  "predictions": {
+    "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1_537327": {
+      "userId": "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1",
+      "matchId": "537327",
+      "homeScore": 1,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781192278,
+        "_nanoseconds": 462000000
+      }
+    },
+    "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1_m1": {
+      "userId": "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1",
+      "matchId": "m1",
+      "homeScore": 0,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781189071,
+        "_nanoseconds": 824000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537327": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781196908,
+        "_nanoseconds": 476000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537328": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537328",
+      "homeScore": 1,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781196910,
+        "_nanoseconds": 179000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537333": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537333",
+      "homeScore": 1,
+      "awayScore": 3,
+      "updatedAt": {
+        "_seconds": 1781196928,
+        "_nanoseconds": 218000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537334": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537334",
+      "homeScore": 0,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781196946,
+        "_nanoseconds": 805000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537339": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537339",
+      "homeScore": 4,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781196944,
+        "_nanoseconds": 604000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537340": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537340",
+      "homeScore": 1,
+      "awayScore": 4,
+      "updatedAt": {
+        "_seconds": 1781196944,
+        "_nanoseconds": 131000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537345": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537345",
+      "homeScore": 3,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781196927,
+        "_nanoseconds": 468000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2_537352": {
+      "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
+      "matchId": "537352",
+      "homeScore": 0,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781196967,
+        "_nanoseconds": 534000000
+      }
+    },
+    "EX5BYcb56YbaBPwxGhoEuqEmWyH2_537327": {
+      "userId": "EX5BYcb56YbaBPwxGhoEuqEmWyH2",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781199492,
+        "_nanoseconds": 708000000
+      }
+    },
+    "F98MSEjHLsX1gmGlTI5Dkf0GoC13_537327": {
+      "userId": "F98MSEjHLsX1gmGlTI5Dkf0GoC13",
+      "matchId": "537327",
+      "homeScore": 1,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781192309,
+        "_nanoseconds": 978000000
+      }
+    },
+    "KC5WqoRiOaUyjXjM9CkLrCw9G8w2_537327": {
+      "userId": "KC5WqoRiOaUyjXjM9CkLrCw9G8w2",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781200208,
+        "_nanoseconds": 281000000
+      }
+    },
+    "KC5WqoRiOaUyjXjM9CkLrCw9G8w2_537328": {
+      "userId": "KC5WqoRiOaUyjXjM9CkLrCw9G8w2",
+      "matchId": "537328",
+      "homeScore": 1,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781200219,
+        "_nanoseconds": 564000000
+      }
+    },
+    "KC5WqoRiOaUyjXjM9CkLrCw9G8w2_537333": {
+      "userId": "KC5WqoRiOaUyjXjM9CkLrCw9G8w2",
+      "matchId": "537333",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781200224,
+        "_nanoseconds": 194000000
+      }
+    },
+    "LSmWMfhIvJdodnqHDg8xPY37lE52_537327": {
+      "userId": "LSmWMfhIvJdodnqHDg8xPY37lE52",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781199720,
+        "_nanoseconds": 618000000
+      }
+    },
+    "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537327": {
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781192416,
+        "_nanoseconds": 932000000
+      }
+    },
+    "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537328": {
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "matchId": "537328",
+      "homeScore": 1,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781201606,
+        "_nanoseconds": 274000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537327": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781197938,
+        "_nanoseconds": 52000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537328": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537328",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781207127,
+        "_nanoseconds": 212000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537333": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537333",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781207228,
+        "_nanoseconds": 877000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537334": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537334",
+      "homeScore": 0,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781207352,
+        "_nanoseconds": 478000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537345": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537345",
+      "homeScore": 3,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781207328,
+        "_nanoseconds": 18000000
+      }
+    },
+    "blvwVeXoMQZqxMiNpXFiggChq5g2_537327": {
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "matchId": "537327",
+      "homeScore": 3,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781193574,
+        "_nanoseconds": 224000000
+      }
+    },
+    "blvwVeXoMQZqxMiNpXFiggChq5g2_537328": {
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "matchId": "537328",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781196121,
+        "_nanoseconds": 340000000
+      }
+    },
+    "blvwVeXoMQZqxMiNpXFiggChq5g2_537333": {
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "matchId": "537333",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781196126,
+        "_nanoseconds": 937000000
+      }
+    },
+    "blvwVeXoMQZqxMiNpXFiggChq5g2_537334": {
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "matchId": "537334",
+      "homeScore": 1,
+      "awayScore": 3,
+      "updatedAt": {
+        "_seconds": 1781196142,
+        "_nanoseconds": 123000000
+      }
+    },
+    "blvwVeXoMQZqxMiNpXFiggChq5g2_537345": {
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "matchId": "537345",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781196137,
+        "_nanoseconds": 437000000
+      }
+    },
+    "eozC2cYBBKZOmoriwXEraNC0Ysr1_537327": {
+      "userId": "eozC2cYBBKZOmoriwXEraNC0Ysr1",
+      "matchId": "537327",
+      "homeScore": 3,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781192480,
+        "_nanoseconds": 671000000
+      }
+    },
+    "nncLCigHI1dtDORgLSZAeKT3r063_537327": {
+      "userId": "nncLCigHI1dtDORgLSZAeKT3r063",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781199571,
+        "_nanoseconds": 17000000
+      }
+    },
+    "sJ45PBHipXM9Qz4fjrwTuRHJRmf1_537327": {
+      "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781193580,
+        "_nanoseconds": 403000000
+      }
+    },
+    "sJ45PBHipXM9Qz4fjrwTuRHJRmf1_537328": {
+      "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
+      "matchId": "537328",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781193303,
+        "_nanoseconds": 863000000
+      }
+    },
+    "sJ45PBHipXM9Qz4fjrwTuRHJRmf1_537333": {
+      "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
+      "matchId": "537333",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781193342,
+        "_nanoseconds": 102000000
+      }
+    },
+    "uMXkUjx7dUYA4DCcucCsed4z7Id2_537327": {
+      "userId": "uMXkUjx7dUYA4DCcucCsed4z7Id2",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781197673,
+        "_nanoseconds": 218000000
+      }
+    },
+    "vY6afke5F5hwhy5FpFRQsMnfCd43_537327": {
+      "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
+      "matchId": "537327",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781196761,
+        "_nanoseconds": 46000000
+      }
+    },
+    "vY6afke5F5hwhy5FpFRQsMnfCd43_537328": {
+      "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
+      "matchId": "537328",
+      "homeScore": 3,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781196776,
+        "_nanoseconds": 239000000
+      }
+    },
+    "vY6afke5F5hwhy5FpFRQsMnfCd43_537333": {
+      "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
+      "matchId": "537333",
+      "homeScore": 2,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781196775,
+        "_nanoseconds": 430000000
+      }
+    }
+  },
+  "users": {
+    "8DjGm8gHX9aSOHP638XVLyAPznq1": {
+      "username": "baris",
+      "email": "barisguler93@gmail.comq",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781193245,
+        "_nanoseconds": 245000000
+      }
+    },
+    "9u7a6EvfOdYP86W6loUg50mdLUr2": {
+      "username": "RidvanC",
+      "email": "ridvan.celebi@yandex.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781196874,
+        "_nanoseconds": 562000000
+      },
+      "livePoints": 2
+    },
+    "CJz3gLLfiIPyTFYUwSEsSFjcZpI3": {
+      "username": "IFK",
+      "email": "ifk.krpnr@gmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781196347,
+        "_nanoseconds": 386000000
+      }
+    },
+    "EX5BYcb56YbaBPwxGhoEuqEmWyH2": {
+      "username": "arda",
+      "email": "arda.ozdemir5454@gmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781199460,
+        "_nanoseconds": 692000000
+      },
+      "livePoints": 1
+    },
+    "KC5WqoRiOaUyjXjM9CkLrCw9G8w2": {
+      "username": "Candik",
+      "email": "can_dik1@hotmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781200198,
+        "_nanoseconds": 408000000
+      },
+      "livePoints": 2
+    },
+    "LSmWMfhIvJdodnqHDg8xPY37lE52": {
+      "username": "Oguzhang",
+      "email": "oguzhangurel8@gmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781199689,
+        "_nanoseconds": 224000000
+      },
+      "livePoints": 1
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33": {
+      "username": "Mehmet",
+      "email": "mnakilci92@gmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781197752,
+        "_nanoseconds": 219000000
+      },
+      "livePoints": 2
+    },
+    "blvwVeXoMQZqxMiNpXFiggChq5g2": {
+      "username": "Ramonibal",
+      "email": "dulekramazan2@gmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781193137,
+        "_nanoseconds": 466000000
+      },
+      "livePoints": 1
+    },
+    "nncLCigHI1dtDORgLSZAeKT3r063": {
+      "username": "Abozdag",
+      "email": "ahmet.bozdag@nttdata.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781197003,
+        "_nanoseconds": 958000000
+      },
+      "livePoints": 2
+    },
+    "sJ45PBHipXM9Qz4fjrwTuRHJRmf1": {
+      "username": "Utifisseye",
+      "email": "oner.ozturk@hotmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781193264,
+        "_nanoseconds": 447000000
+      },
+      "livePoints": 2
+    },
+    "uMXkUjx7dUYA4DCcucCsed4z7Id2": {
+      "username": "Creaman",
+      "email": "omerkaansevinc@gmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781197582,
+        "_nanoseconds": 775000000
+      },
+      "livePoints": 2
+    },
+    "vY6afke5F5hwhy5FpFRQsMnfCd43": {
+      "username": "Staskan",
+      "email": "serkan_taskan@hotmail.com",
+      "points": 0,
+      "exactMatches": 0,
+      "correctWinners": 0,
+      "createdAt": {
+        "_seconds": 1781196718,
+        "_nanoseconds": 628000000
+      },
+      "livePoints": 1
+    }
+  }
+}

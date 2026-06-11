@@ -1,0 +1,40 @@
+{
+  "info": {
+    "name": "Football-Data.org World Cup API (NTT Game)",
+    "description": "Dünya Kupası maçlarını çekmek için kullandığımız API istekleri.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get World Cup Matches",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Auth-Token",
+            "value": "376f75d17a1d47dd8965df7579a80cec",
+            "type": "text",
+            "description": "Projede kullandığımız mevcut API Key"
+          }
+        ],
+        "url": {
+          "raw": "https://api.football-data.org/v4/competitions/WC/matches",
+          "protocol": "https",
+          "host": [
+            "api",
+            "football-data",
+            "org"
+          ],
+          "path": [
+            "v4",
+            "competitions",
+            "WC",
+            "matches"
+          ]
+        },
+        "description": "Dünya Kupası (WC) turnuvasındaki tüm maçların listesini ve güncel skor/durum bilgilerini döndürür."
+      },
+      "response": []
+    }
+  ]
+}

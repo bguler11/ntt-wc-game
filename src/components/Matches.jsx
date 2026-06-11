@@ -309,6 +309,27 @@ export default function Matches() {
                 </div>
               </div>
 
+              {(match.status === 'IN_PLAY' || match.status === 'PAUSED') && (
+                <div style={{ 
+                  marginTop: '1rem', 
+                  padding: '0.5rem 1rem', 
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)', 
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  borderRadius: '8px',
+                  color: '#ef4444', 
+                  fontWeight: 'bold', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '0.5rem',
+                  width: '100%'
+                }}>
+                  <div style={{ width: '8px', height: '8px', backgroundColor: '#ef4444', borderRadius: '50%', animation: 'pulse 2s infinite' }}></div>
+                  CANLI SKOR: {match.result?.home ?? 0} - {match.result?.away ?? 0}
+                  {match.status === 'PAUSED' && <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>(Devre Arası)</span>}
+                </div>
+              )}
+
               <button 
                 className={`btn ${isLocked ? 'btn-secondary' : 'btn-primary'} submit-prediction-btn`} 
                 disabled={isLocked || loading}

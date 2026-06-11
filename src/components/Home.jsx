@@ -56,20 +56,7 @@ export default function Home() {
 
   return (
     <div>
-      <header style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        padding: scrolled ? '0.75rem 0' : '0 0 2rem 0', 
-        borderBottom: scrolled ? '1px solid var(--glass-border)' : '1px solid var(--glass-border)', 
-        marginBottom: '2rem',
-        position: 'sticky',
-        top: 0,
-        backgroundColor: scrolled ? 'rgba(15, 23, 42, 0.9)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        zIndex: 50,
-        transition: 'all 0.3s ease'
-      }}>
+      <header className={`header-container ${scrolled ? 'scrolled' : ''}`}>
         <h1 className="text-gradient" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0, fontSize: scrolled ? '0px' : '1.5rem', transition: 'all 0.3s ease' }}>
           <img src={logo} alt="Dünya Kupası Logo" style={{ width: scrolled ? '36px' : '44px', height: scrolled ? '36px' : '44px', borderRadius: '50%', transition: 'all 0.3s ease' }} />
           <span style={{ 
@@ -84,17 +71,17 @@ export default function Home() {
           </span>
         </h1>
         {currentUser ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 'bold' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span className="header-user-name">
               {username || currentUser.email.split('@')[0]}
             </span>
-            <button onClick={handleLogout} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
+            <button onClick={handleLogout} className="btn btn-secondary btn-logout" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
               <LogOut size={16} />
-              Çıkış
+              <span className="header-logout-text">Çıkış</span>
             </button>
           </div>
         ) : (
-          <button onClick={() => navigate('/login')} className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
+          <button onClick={() => navigate('/login')} className="btn btn-primary btn-logout" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
             Giriş Yap
           </button>
         )}

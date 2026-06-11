@@ -21,12 +21,8 @@ const TOURNAMENT_CODE = "WC"; // World Cup
 async function syncMatches() {
   console.log(`[1/4] Eski maçlar veritabanından temizleniyor...`);
   try {
-    const matchesSnapshot = await getDocs(collection(db, "matches"));
-    const deletePromises = [];
-    matchesSnapshot.forEach((document) => {
-      deletePromises.push(deleteDoc(doc(db, "matches", document.id)));
-    });
-    await Promise.all(deletePromises);
+    // Artık maçları silmiyoruz, üstüne yazacağız (merge: true)
+    // Böylece ikinci (canlı) API'nin yazdığı canlı skorlar kaybolmayacak.
     console.log(`[2/4] Eski maçlar silindi. API'den ${TOURNAMENT_CODE} maçları çekiliyor...`);
     
     const response = await fetch(`https://api.football-data.org/v4/competitions/${TOURNAMENT_CODE}/matches`, {
@@ -65,7 +61,20 @@ async function syncMatches() {
         }
       };
 
-      await setDoc(doc(collection(db, "matches"), matchDoc.id), matchDoc);
+      const existingDocRef = doc(collection(db, "matches"), matchDoc.id);
+      const existingDocSnap = await getDoc(existingDocRef);
+
+      if (existingDocSnap.exists()) {
+        const existingData = existingDocSnap.data();
+        // KORUMA: Eğer ana API maç "TIMED" diyor ama veritabanımızda "IN_PLAY" ise (Canlı API'den gelmişse),
+        // Ana API'nin null-null verisiyle canlı skoru ezmesini engelle.
+        if (m.status === 'TIMED' && (existingData.status === 'IN_PLAY' || existingData.status === 'PAUSED')) {
+           matchDoc.status = existingData.status;
+           matchDoc.result = existingData.result;
+        }
+      }
+
+      await setDoc(existingDocRef, matchDoc, { merge: true });
       count++;
 
       // --- CANLI PUANLAMA MANTIĞI (Geçici Puanlar) ---
