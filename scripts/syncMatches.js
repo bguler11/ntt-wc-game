@@ -41,7 +41,7 @@ async function syncMatches() {
     console.log(`[3/4] Toplam ${matches.length} maç bulundu. Veritabanına yazılıyor ve puanlar hesaplanıyor...`);
 
     let count = 0;
-    const livePointsMap = {}; // userId -> toplam canlı puan
+
 
     for (const m of matches) {
       const homeTeam = m.homeTeam?.name || 'Belirsiz';
@@ -87,34 +87,7 @@ async function syncMatches() {
       count++;
 
       // --- CANLI PUANLAMA MANTIĞI (Geçici Puanlar) ---
-      if ((matchDoc.status === 'IN_PLAY' || matchDoc.status === 'PAUSED') && matchDoc.result.home !== null && matchDoc.result.away !== null) {
-        const qAll = query(collection(db, 'predictions'), where('matchId', '==', matchDoc.id));
-        const predSnap = await getDocs(qAll);
-        
-        for (const pDoc of predSnap.docs) {
-          const predData = pDoc.data();
-          const predHome = Number(predData.homeScore);
-          const predAway = Number(predData.awayScore);
-          const actualHome = Number(matchDoc.result.home);
-          const actualAway = Number(matchDoc.result.away);
-
-          const actualDiff = actualHome - actualAway;
-          const predDiff = predHome - predAway;
-
-          const isExact = (actualHome === predHome && actualAway === predAway);
-          const isDiff = (actualDiff === predDiff);
-          const isWinner = (Math.sign(actualDiff) === Math.sign(predDiff));
-
-          let points = 0;
-          if (isExact) points = 3;
-          else if (isDiff) points = 2;
-          else if (isWinner) points = 1;
-
-          if (predData.userId) {
-            livePointsMap[predData.userId] = (livePointsMap[predData.userId] || 0) + points;
-          }
-        }
-      }
+      // (Kaldırıldı çünkü ESPN API kullanan syncLiveScores.js ile çakışıyor ve onun puanlarını sıfırlıyor)
 
       // --- KALICI PUANLAMA MANTIĞI ---
       if (matchDoc.status === 'FINISHED' && matchDoc.result.home !== null && matchDoc.result.away !== null) {
@@ -177,16 +150,7 @@ async function syncMatches() {
       }
     }
 
-    // --- KULLANICILARIN CANLI PUANLARINI GÜNCELLE ---
-    const usersSnap = await getDocs(collection(db, 'users'));
-    for (const uDoc of usersSnap.docs) {
-      const uData = uDoc.data();
-      const currentLivePoints = uData.livePoints || 0;
-      const newLivePoints = livePointsMap[uDoc.id] || 0;
-      if (currentLivePoints !== newLivePoints) {
-        await updateDoc(doc(db, 'users', uDoc.id), { livePoints: newLivePoints });
-      }
-    }
+    // (Kullanıcıların canlı puanlarını güncelleme kısmı syncLiveScores.js'e bırakıldı)
 
     console.log(`[4/4] Başarılı! Toplam ${count} maç Firestore'a kaydedildi ve puanlar güncellendi.`);
     process.exit(0);

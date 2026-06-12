@@ -17,7 +17,29 @@ async function syncLiveScores() {
   initializeApp({ credential: cert(serviceAccount) });
   const db = getFirestore();
 
-  console.log(`[2/3] ESPN API'den canli maclar cekiliyor...`);
+  console.log(`[*] Veritabanindaki mac saatleri kontrol ediliyor...`);
+  const now = new Date();
+  const matchQuery = await db.collection('matches').get();
+  
+  let hasActiveMatch = false;
+  matchQuery.docs.forEach(doc => {
+    const data = doc.data();
+    if (data.date) {
+      const matchDate = new Date(data.date);
+      // Maç şu anki zamandan önceki 160 dakika içinde mi başladı? Veya 5 dakika sonra mı başlayacak?
+      const diffMinutes = (now - matchDate) / 1000 / 60;
+      if (diffMinutes >= -5 && diffMinutes <= 160) {
+        hasActiveMatch = true;
+      }
+    }
+  });
+
+  if (!hasActiveMatch) {
+    console.log(`Şu an (veya son 160 dakika içinde) başlamış bir maç bulunmuyor. ESPN API'sine istek atılmayacak (Sıfır Maliyet Uyku Modu).`);
+    process.exit(0);
+  }
+
+  console.log(`[2/3] Aktif mac bulundu! ESPN API'den canli maclar cekiliyor...`);
   const url = `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard`;
   
   try {
@@ -42,11 +64,9 @@ async function syncLiveScores() {
       
       if (!homeTeamObj || !awayTeamObj) continue;
 
-      // Takım isimlerini düzelt (API'den dönen isimleri Firebase formatına göre eşleştirmek için eklenebilir)
       let homeTeam = homeTeamObj.team.displayName;
       let awayTeam = awayTeamObj.team.displayName;
       
-      // Bosna Hersek API'den Bosnia-Herzegovina olarak dönüyor.
       if(homeTeam === 'Bosnia-Herzegovina') homeTeam = 'Bosnia-Herzegovina'; 
       if(awayTeam === 'Bosnia-Herzegovina') awayTeam = 'Bosnia-Herzegovina';
 
@@ -62,12 +82,10 @@ async function syncLiveScores() {
       if (!matchQuery.empty) {
         const matchDocSnap = matchQuery.docs[0];
         const isFinished = e.status.type.state === 'post';
-        // Eğer maç ESPN'de bittiyse (post), ancak Firebase'de "PAUSED" veya "IN_PLAY" ise bitmiş yapalım.
         const newStatus = isFinished ? 'FINISHED' : 'IN_PLAY';
 
         console.log(`Eslesme bulundu: ${homeTeam} vs ${awayTeam} -> Skor: ${homeScore}-${awayScore} (${newStatus})`);
         
-        // Mac durumunu ve skorunu anlik guncelle
         await matchDocSnap.ref.update({
           status: newStatus,
           'result.home': homeScore,
@@ -78,7 +96,7 @@ async function syncLiveScores() {
         const qAll = await db.collection('predictions').where('matchId', '==', matchDocSnap.id).get();
         qAll.docs.forEach(pDoc => {
           const predData = pDoc.data();
-          if (predData.isProcessed) return; // Zaten kalici puana donusmusse canli puan ekleme
+          if (predData.isProcessed) return;
 
           const predHome = Number(predData.homeScore);
           const predAway = Number(predData.awayScore);
