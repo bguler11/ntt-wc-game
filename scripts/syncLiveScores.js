@@ -81,7 +81,7 @@ async function syncLiveScores() {
 
       if (!matchQuery.empty) {
         const matchDocSnap = matchQuery.docs[0];
-        const isFinished = e.status.type.state === 'post';
+        const isFinished = e.status.type.state === 'post' || e.status.type.detail === 'FT' || e.status.type.completed === true;
         const newStatus = isFinished ? 'FINISHED' : 'IN_PLAY';
 
         console.log(`Eslesme bulundu: ${homeTeam} vs ${awayTeam} -> Skor: ${homeScore}-${awayScore} (${newStatus})`);
