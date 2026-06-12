@@ -2,7 +2,7 @@ name: Live Match Sync
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Her 5 dakikada bir çalışır
+    - cron: '* * * * *' # Her 1 dakikada bir çalışır
   workflow_dispatch: # Manuel olarak GitHub üzerinden de tetiklenebilir
 
 jobs:

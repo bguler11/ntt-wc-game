@@ -17,32 +17,43 @@ async function syncLiveScores() {
   initializeApp({ credential: cert(serviceAccount) });
   const db = getFirestore();
 
-  console.log(`[2/3] TheSportsDB'den gunluk canli maclar cekiliyor...`);
-  const d = new Date().toISOString().split('T')[0];
-  const url = `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${d}&s=Soccer`;
+  console.log(`[2/3] ESPN API'den canli maclar cekiliyor...`);
+  const url = `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard`;
   
   try {
     const res = await fetch(url);
     const data = await res.json();
     if (!data.events) {
-      console.log("Bugun icin TheSportsDB'de mac bulunamadi.");
+      console.log("Bugun icin ESPN API'de mac bulunamadi.");
       process.exit(0);
     }
 
-    const liveStatuses = ['1H', '2H', 'HT', 'LIVE', 'IN_PLAY', 'FT', 'AET', 'Pen.']; 
-    const liveEvents = data.events.filter(e => liveStatuses.includes(e.strStatus));
+    // state: "in" (live), "post" (finished)
+    const liveEvents = data.events.filter(e => e.status.type.state === 'in' || e.status.type.state === 'post');
     
-    console.log(`TheSportsDB'de ${liveEvents.length} adet CANLI mac bulundu.`);
+    console.log(`ESPN API'de ${liveEvents.length} adet CANLI veya BITMIS mac bulundu.`);
 
     const livePointsMap = {}; // userId -> points
     
     for (const e of liveEvents) {
-      const homeTeam = e.strHomeTeam;
-      const awayTeam = e.strAwayTeam;
-      const homeScore = parseInt(e.intHomeScore) || 0;
-      const awayScore = parseInt(e.intAwayScore) || 0;
+      const comp = e.competitions[0];
+      const homeTeamObj = comp.competitors.find(c => c.homeAway === 'home');
+      const awayTeamObj = comp.competitors.find(c => c.homeAway === 'away');
+      
+      if (!homeTeamObj || !awayTeamObj) continue;
 
-      // Firestore'da eslesen maci bul (Eski API'nin id'sine gore degil, isimlere gore eslestirme)
+      // Takım isimlerini düzelt (API'den dönen isimleri Firebase formatına göre eşleştirmek için eklenebilir)
+      let homeTeam = homeTeamObj.team.displayName;
+      let awayTeam = awayTeamObj.team.displayName;
+      
+      // Bosna Hersek API'den Bosnia-Herzegovina olarak dönüyor.
+      if(homeTeam === 'Bosnia-Herzegovina') homeTeam = 'Bosnia-Herzegovina'; 
+      if(awayTeam === 'Bosnia-Herzegovina') awayTeam = 'Bosnia-Herzegovina';
+
+      const homeScore = parseInt(homeTeamObj.score) || 0;
+      const awayScore = parseInt(awayTeamObj.score) || 0;
+
+      // Firestore'da eslesen maci bul (İsimlere gore eslestirme)
       const matchQuery = await db.collection('matches')
         .where('homeTeam', '==', homeTeam)
         .where('awayTeam', '==', awayTeam)
@@ -50,7 +61,8 @@ async function syncLiveScores() {
 
       if (!matchQuery.empty) {
         const matchDocSnap = matchQuery.docs[0];
-        const isFinished = ['FT', 'AET', 'Pen.'].includes(e.strStatus);
+        const isFinished = e.status.type.state === 'post';
+        // Eğer maç ESPN'de bittiyse (post), ancak Firebase'de "PAUSED" veya "IN_PLAY" ise bitmiş yapalım.
         const newStatus = isFinished ? 'FINISHED' : 'IN_PLAY';
 
         console.log(`Eslesme bulundu: ${homeTeam} vs ${awayTeam} -> Skor: ${homeScore}-${awayScore} (${newStatus})`);

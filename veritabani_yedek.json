@@ -1,4 +1,91 @@
 {
+  "comments": {
+    "8navyLsOzu1Kaj32pd1a": {
+      "matchId": "537333",
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "text": "Larin 2 tane attı bile",
+      "createdAt": {
+        "_seconds": 1781252931,
+        "_nanoseconds": 426000000
+      }
+    },
+    "9yBP0W14QUs4KKiJJfQO": {
+      "matchId": "537328",
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "text": "lkjlkjk",
+      "createdAt": {
+        "_seconds": 1781215335,
+        "_nanoseconds": 181000000
+      },
+      "isDeleted": true
+    },
+    "AXvfrfU5vWsehmaruzJ6": {
+      "matchId": "537328",
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "text": "tesrt",
+      "createdAt": {
+        "_seconds": 1781215329,
+        "_nanoseconds": 42000000
+      },
+      "isDeleted": true
+    },
+    "CKqmYawqOjNFpxK8ajSB": {
+      "matchId": "537333",
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "text": "bosna çok zor geldi buraya dzeko önderliğinde 1 gol atarlar",
+      "createdAt": {
+        "_seconds": 1781252832,
+        "_nanoseconds": 396000000
+      }
+    },
+    "Fm4VeNUPy4QgylYrtx2t": {
+      "matchId": "537346",
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "text": "Kesinlikle kazanmamız gereken maç, kazanırsak gruptan çıktık diyebiliriz.",
+      "createdAt": {
+        "_seconds": 1781286310,
+        "_nanoseconds": 437000000
+      }
+    },
+    "L2pGh9w8baH2Ck8lckbR": {
+      "matchId": "537333",
+      "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
+      "text": "Şarkı tek bastonla 2 gol atar",
+      "createdAt": {
+        "_seconds": 1781258151,
+        "_nanoseconds": 270000000
+      },
+      "isDeleted": true
+    },
+    "mux4AfyU7XS6gqMafPaA": {
+      "matchId": "537333",
+      "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
+      "text": "Dzeko tek bastonla 2 gol atar.",
+      "createdAt": {
+        "_seconds": 1781258181,
+        "_nanoseconds": 770000000
+      }
+    },
+    "sOmEXTro8C2WgZofi8WQ": {
+      "matchId": "537333",
+      "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
+      "text": "Kanadanın forvetleri cok iyi bosnaya ağır gelebilir",
+      "createdAt": {
+        "_seconds": 1781286252,
+        "_nanoseconds": 602000000
+      }
+    },
+    "sno40b9xBMo1jvbGH2Y3": {
+      "matchId": "537328",
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "text": "test mesaj",
+      "createdAt": {
+        "_seconds": 1781215157,
+        "_nanoseconds": 649000000
+      },
+      "isDeleted": true
+    }
+  },
   "matches": {
     "537327": {
       "id": "537327",
@@ -7,11 +94,12 @@
       "homeFlag": "https://crests.football-data.org/769.svg",
       "awayFlag": "https://crests.football-data.org/9396.svg",
       "date": "2026-06-11T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "result": {
-        "home": 1,
-        "away": 0
-      }
+        "away": 0,
+        "home": 2
+      },
+      "group": "GROUP_A"
     },
     "537328": {
       "id": "537328",
@@ -20,11 +108,12 @@
       "homeFlag": "https://crests.football-data.org/772.png",
       "awayFlag": "https://crests.football-data.org/798.svg",
       "date": "2026-06-12T02:00:00Z",
-      "status": "TIMED",
+      "group": "GROUP_A",
       "result": {
-        "home": null,
-        "away": null
-      }
+        "away": 1,
+        "home": 2
+      },
+      "status": "FINISHED"
     },
     "537329": {
       "id": "537329",
@@ -37,7 +126,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_A"
     },
     "537330": {
       "id": "537330",
@@ -50,7 +140,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_A"
     },
     "537331": {
       "id": "537331",
@@ -63,7 +154,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_A"
     },
     "537332": {
       "id": "537332",
@@ -76,7 +168,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_A"
     },
     "537333": {
       "id": "537333",
@@ -89,7 +182,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_B"
     },
     "537334": {
       "id": "537334",
@@ -102,7 +196,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_B"
     },
     "537335": {
       "id": "537335",
@@ -115,7 +210,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_B"
     },
     "537336": {
       "id": "537336",
@@ -128,7 +224,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_B"
     },
     "537337": {
       "id": "537337",
@@ -141,7 +238,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_B"
     },
     "537338": {
       "id": "537338",
@@ -154,7 +252,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_B"
     },
     "537339": {
       "id": "537339",
@@ -167,7 +266,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_C"
     },
     "537340": {
       "id": "537340",
@@ -180,7 +280,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_C"
     },
     "537341": {
       "id": "537341",
@@ -193,7 +294,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_C"
     },
     "537342": {
       "id": "537342",
@@ -206,7 +308,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_C"
     },
     "537343": {
       "id": "537343",
@@ -219,7 +322,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_C"
     },
     "537344": {
       "id": "537344",
@@ -232,7 +336,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_C"
     },
     "537345": {
       "id": "537345",
@@ -245,7 +350,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_D"
     },
     "537346": {
       "id": "537346",
@@ -258,7 +364,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_D"
     },
     "537347": {
       "id": "537347",
@@ -271,7 +378,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_D"
     },
     "537348": {
       "id": "537348",
@@ -284,7 +392,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_D"
     },
     "537349": {
       "id": "537349",
@@ -297,7 +406,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_D"
     },
     "537350": {
       "id": "537350",
@@ -310,7 +420,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_D"
     },
     "537351": {
       "id": "537351",
@@ -323,7 +434,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_E"
     },
     "537352": {
       "id": "537352",
@@ -336,7 +448,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_E"
     },
     "537353": {
       "id": "537353",
@@ -349,7 +462,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_E"
     },
     "537354": {
       "id": "537354",
@@ -362,7 +476,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_E"
     },
     "537355": {
       "id": "537355",
@@ -375,7 +490,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_E"
     },
     "537356": {
       "id": "537356",
@@ -388,7 +504,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_E"
     },
     "537357": {
       "id": "537357",
@@ -401,7 +518,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_F"
     },
     "537358": {
       "id": "537358",
@@ -414,7 +532,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_F"
     },
     "537359": {
       "id": "537359",
@@ -427,7 +546,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_F"
     },
     "537360": {
       "id": "537360",
@@ -440,7 +560,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_F"
     },
     "537361": {
       "id": "537361",
@@ -453,7 +574,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_F"
     },
     "537362": {
       "id": "537362",
@@ -466,7 +588,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_F"
     },
     "537363": {
       "id": "537363",
@@ -479,7 +602,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_G"
     },
     "537364": {
       "id": "537364",
@@ -492,7 +616,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_G"
     },
     "537365": {
       "id": "537365",
@@ -505,7 +630,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_G"
     },
     "537366": {
       "id": "537366",
@@ -518,7 +644,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_G"
     },
     "537367": {
       "id": "537367",
@@ -531,7 +658,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_G"
     },
     "537368": {
       "id": "537368",
@@ -544,7 +672,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_G"
     },
     "537369": {
       "id": "537369",
@@ -557,7 +686,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_H"
     },
     "537370": {
       "id": "537370",
@@ -570,7 +700,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_H"
     },
     "537371": {
       "id": "537371",
@@ -583,7 +714,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_H"
     },
     "537372": {
       "id": "537372",
@@ -596,7 +728,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_H"
     },
     "537373": {
       "id": "537373",
@@ -609,7 +742,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_H"
     },
     "537374": {
       "id": "537374",
@@ -622,7 +756,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_H"
     },
     "537375": {
       "id": "537375",
@@ -635,7 +770,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537376": {
       "id": "537376",
@@ -648,7 +784,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537377": {
       "id": "537377",
@@ -661,7 +798,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537378": {
       "id": "537378",
@@ -674,7 +812,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537379": {
       "id": "537379",
@@ -687,7 +826,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537380": {
       "id": "537380",
@@ -700,7 +840,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537381": {
       "id": "537381",
@@ -713,7 +854,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537382": {
       "id": "537382",
@@ -726,7 +868,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537383": {
       "id": "537383",
@@ -739,7 +882,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537384": {
       "id": "537384",
@@ -752,7 +896,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537385": {
       "id": "537385",
@@ -765,7 +910,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537386": {
       "id": "537386",
@@ -778,7 +924,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537387": {
       "id": "537387",
@@ -791,7 +938,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537388": {
       "id": "537388",
@@ -804,7 +952,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537389": {
       "id": "537389",
@@ -817,7 +966,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537390": {
       "id": "537390",
@@ -830,7 +980,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537391": {
       "id": "537391",
@@ -843,7 +994,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_I"
     },
     "537392": {
       "id": "537392",
@@ -856,7 +1008,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_I"
     },
     "537393": {
       "id": "537393",
@@ -869,7 +1022,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_I"
     },
     "537394": {
       "id": "537394",
@@ -882,7 +1036,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_I"
     },
     "537395": {
       "id": "537395",
@@ -895,7 +1050,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_I"
     },
     "537396": {
       "id": "537396",
@@ -908,7 +1064,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_I"
     },
     "537397": {
       "id": "537397",
@@ -921,7 +1078,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_J"
     },
     "537398": {
       "id": "537398",
@@ -934,7 +1092,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_J"
     },
     "537399": {
       "id": "537399",
@@ -947,7 +1106,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_J"
     },
     "537400": {
       "id": "537400",
@@ -960,7 +1120,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_J"
     },
     "537401": {
       "id": "537401",
@@ -973,7 +1134,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_J"
     },
     "537402": {
       "id": "537402",
@@ -986,7 +1148,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_J"
     },
     "537403": {
       "id": "537403",
@@ -999,7 +1162,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_K"
     },
     "537404": {
       "id": "537404",
@@ -1012,7 +1176,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_K"
     },
     "537405": {
       "id": "537405",
@@ -1025,7 +1190,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_K"
     },
     "537406": {
       "id": "537406",
@@ -1038,7 +1204,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_K"
     },
     "537407": {
       "id": "537407",
@@ -1051,7 +1218,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_K"
     },
     "537408": {
       "id": "537408",
@@ -1064,7 +1232,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_K"
     },
     "537409": {
       "id": "537409",
@@ -1077,7 +1246,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_L"
     },
     "537410": {
       "id": "537410",
@@ -1090,7 +1260,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_L"
     },
     "537411": {
       "id": "537411",
@@ -1103,7 +1274,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_L"
     },
     "537412": {
       "id": "537412",
@@ -1116,7 +1288,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_L"
     },
     "537413": {
       "id": "537413",
@@ -1129,7 +1302,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_L"
     },
     "537414": {
       "id": "537414",
@@ -1142,7 +1316,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": "GROUP_L"
     },
     "537415": {
       "id": "537415",
@@ -1155,7 +1330,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537416": {
       "id": "537416",
@@ -1168,7 +1344,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537417": {
       "id": "537417",
@@ -1181,7 +1358,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537418": {
       "id": "537418",
@@ -1194,7 +1372,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537419": {
       "id": "537419",
@@ -1207,7 +1386,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537420": {
       "id": "537420",
@@ -1220,7 +1400,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537421": {
       "id": "537421",
@@ -1233,7 +1414,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537422": {
       "id": "537422",
@@ -1246,7 +1428,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537423": {
       "id": "537423",
@@ -1259,7 +1442,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537424": {
       "id": "537424",
@@ -1272,7 +1456,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537425": {
       "id": "537425",
@@ -1285,7 +1470,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537426": {
       "id": "537426",
@@ -1298,7 +1484,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537427": {
       "id": "537427",
@@ -1311,7 +1498,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537428": {
       "id": "537428",
@@ -1324,7 +1512,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537429": {
       "id": "537429",
@@ -1337,7 +1526,8 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     },
     "537430": {
       "id": "537430",
@@ -1350,30 +1540,11 @@
       "result": {
         "home": null,
         "away": null
-      }
+      },
+      "group": null
     }
   },
   "predictions": {
-    "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1_537327": {
-      "userId": "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1",
-      "matchId": "537327",
-      "homeScore": 1,
-      "awayScore": 2,
-      "updatedAt": {
-        "_seconds": 1781192278,
-        "_nanoseconds": 462000000
-      }
-    },
-    "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1_m1": {
-      "userId": "7kIlTVcCZGMQ8Ht0tDtdcOtkPUi1",
-      "matchId": "m1",
-      "homeScore": 0,
-      "awayScore": 1,
-      "updatedAt": {
-        "_seconds": 1781189071,
-        "_nanoseconds": 824000000
-      }
-    },
     "9u7a6EvfOdYP86W6loUg50mdLUr2_537327": {
       "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
       "matchId": "537327",
@@ -1382,7 +1553,9 @@
       "updatedAt": {
         "_seconds": 1781196908,
         "_nanoseconds": 476000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "9u7a6EvfOdYP86W6loUg50mdLUr2_537328": {
       "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
@@ -1392,7 +1565,9 @@
       "updatedAt": {
         "_seconds": 1781196910,
         "_nanoseconds": 179000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
     },
     "9u7a6EvfOdYP86W6loUg50mdLUr2_537333": {
       "userId": "9u7a6EvfOdYP86W6loUg50mdLUr2",
@@ -1462,16 +1637,38 @@
       "updatedAt": {
         "_seconds": 1781199492,
         "_nanoseconds": 708000000
+      },
+      "isProcessed": true,
+      "earnedPoints": 3
+    },
+    "EX5BYcb56YbaBPwxGhoEuqEmWyH2_537333": {
+      "userId": "EX5BYcb56YbaBPwxGhoEuqEmWyH2",
+      "matchId": "537333",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781250701,
+        "_nanoseconds": 747000000
       }
     },
-    "F98MSEjHLsX1gmGlTI5Dkf0GoC13_537327": {
-      "userId": "F98MSEjHLsX1gmGlTI5Dkf0GoC13",
-      "matchId": "537327",
-      "homeScore": 1,
-      "awayScore": 2,
+    "EX5BYcb56YbaBPwxGhoEuqEmWyH2_537334": {
+      "userId": "EX5BYcb56YbaBPwxGhoEuqEmWyH2",
+      "matchId": "537334",
+      "homeScore": 0,
+      "awayScore": 3,
       "updatedAt": {
-        "_seconds": 1781192309,
-        "_nanoseconds": 978000000
+        "_seconds": 1781250730,
+        "_nanoseconds": 419000000
+      }
+    },
+    "EX5BYcb56YbaBPwxGhoEuqEmWyH2_537345": {
+      "userId": "EX5BYcb56YbaBPwxGhoEuqEmWyH2",
+      "matchId": "537345",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781250721,
+        "_nanoseconds": 53000000
       }
     },
     "KC5WqoRiOaUyjXjM9CkLrCw9G8w2_537327": {
@@ -1482,7 +1679,9 @@
       "updatedAt": {
         "_seconds": 1781200208,
         "_nanoseconds": 281000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "KC5WqoRiOaUyjXjM9CkLrCw9G8w2_537328": {
       "userId": "KC5WqoRiOaUyjXjM9CkLrCw9G8w2",
@@ -1492,7 +1691,9 @@
       "updatedAt": {
         "_seconds": 1781200219,
         "_nanoseconds": 564000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
     },
     "KC5WqoRiOaUyjXjM9CkLrCw9G8w2_537333": {
       "userId": "KC5WqoRiOaUyjXjM9CkLrCw9G8w2",
@@ -1512,6 +1713,38 @@
       "updatedAt": {
         "_seconds": 1781199720,
         "_nanoseconds": 618000000
+      },
+      "isProcessed": true,
+      "earnedPoints": 3
+    },
+    "LSmWMfhIvJdodnqHDg8xPY37lE52_537333": {
+      "userId": "LSmWMfhIvJdodnqHDg8xPY37lE52",
+      "matchId": "537333",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781245995,
+        "_nanoseconds": 959000000
+      }
+    },
+    "LSmWMfhIvJdodnqHDg8xPY37lE52_537334": {
+      "userId": "LSmWMfhIvJdodnqHDg8xPY37lE52",
+      "matchId": "537334",
+      "homeScore": 0,
+      "awayScore": 3,
+      "updatedAt": {
+        "_seconds": 1781246016,
+        "_nanoseconds": 866000000
+      }
+    },
+    "LSmWMfhIvJdodnqHDg8xPY37lE52_537345": {
+      "userId": "LSmWMfhIvJdodnqHDg8xPY37lE52",
+      "matchId": "537345",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781246018,
+        "_nanoseconds": 764000000
       }
     },
     "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537327": {
@@ -1522,16 +1755,50 @@
       "updatedAt": {
         "_seconds": 1781192416,
         "_nanoseconds": 932000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537328": {
       "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
       "matchId": "537328",
       "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781216713,
+        "_nanoseconds": 472000000
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
+    },
+    "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537333": {
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "matchId": "537333",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781212670,
+        "_nanoseconds": 672000000
+      }
+    },
+    "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537334": {
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "matchId": "537334",
+      "homeScore": 0,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781290466,
+        "_nanoseconds": 695000000
+      }
+    },
+    "T7YXvcxiwDVrDAuQLsOpXC0LFIE3_537345": {
+      "userId": "T7YXvcxiwDVrDAuQLsOpXC0LFIE3",
+      "matchId": "537345",
+      "homeScore": 1,
       "awayScore": 0,
       "updatedAt": {
-        "_seconds": 1781201606,
-        "_nanoseconds": 274000000
+        "_seconds": 1781290451,
+        "_nanoseconds": 638000000
       }
     },
     "TvI1jc7e7CQynrfqbaPP3qspna33_537327": {
@@ -1542,7 +1809,9 @@
       "updatedAt": {
         "_seconds": 1781197938,
         "_nanoseconds": 52000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "TvI1jc7e7CQynrfqbaPP3qspna33_537328": {
       "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
@@ -1552,7 +1821,9 @@
       "updatedAt": {
         "_seconds": 1781207127,
         "_nanoseconds": 212000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
     },
     "TvI1jc7e7CQynrfqbaPP3qspna33_537333": {
       "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
@@ -1574,6 +1845,26 @@
         "_nanoseconds": 478000000
       }
     },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537339": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537339",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781207390,
+        "_nanoseconds": 373000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537340": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537340",
+      "homeScore": 3,
+      "awayScore": 4,
+      "updatedAt": {
+        "_seconds": 1781207414,
+        "_nanoseconds": 136000000
+      }
+    },
     "TvI1jc7e7CQynrfqbaPP3qspna33_537345": {
       "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
       "matchId": "537345",
@@ -1584,6 +1875,36 @@
         "_nanoseconds": 18000000
       }
     },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537346": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537346",
+      "homeScore": 1,
+      "awayScore": 3,
+      "updatedAt": {
+        "_seconds": 1781207367,
+        "_nanoseconds": 678000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537351": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537351",
+      "homeScore": 2,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781207373,
+        "_nanoseconds": 984000000
+      }
+    },
+    "TvI1jc7e7CQynrfqbaPP3qspna33_537357": {
+      "userId": "TvI1jc7e7CQynrfqbaPP3qspna33",
+      "matchId": "537357",
+      "homeScore": 4,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781207381,
+        "_nanoseconds": 323000000
+      }
+    },
     "blvwVeXoMQZqxMiNpXFiggChq5g2_537327": {
       "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
       "matchId": "537327",
@@ -1592,7 +1913,9 @@
       "updatedAt": {
         "_seconds": 1781193574,
         "_nanoseconds": 224000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 2
     },
     "blvwVeXoMQZqxMiNpXFiggChq5g2_537328": {
       "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
@@ -1602,7 +1925,9 @@
       "updatedAt": {
         "_seconds": 1781196121,
         "_nanoseconds": 340000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
     },
     "blvwVeXoMQZqxMiNpXFiggChq5g2_537333": {
       "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
@@ -1617,11 +1942,11 @@
     "blvwVeXoMQZqxMiNpXFiggChq5g2_537334": {
       "userId": "blvwVeXoMQZqxMiNpXFiggChq5g2",
       "matchId": "537334",
-      "homeScore": 1,
+      "homeScore": 0,
       "awayScore": 3,
       "updatedAt": {
-        "_seconds": 1781196142,
-        "_nanoseconds": 123000000
+        "_seconds": 1781252892,
+        "_nanoseconds": 45000000
       }
     },
     "blvwVeXoMQZqxMiNpXFiggChq5g2_537345": {
@@ -1642,7 +1967,9 @@
       "updatedAt": {
         "_seconds": 1781192480,
         "_nanoseconds": 671000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "nncLCigHI1dtDORgLSZAeKT3r063_537327": {
       "userId": "nncLCigHI1dtDORgLSZAeKT3r063",
@@ -1652,6 +1979,18 @@
       "updatedAt": {
         "_seconds": 1781199571,
         "_nanoseconds": 17000000
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
+    },
+    "nncLCigHI1dtDORgLSZAeKT3r063_537333": {
+      "userId": "nncLCigHI1dtDORgLSZAeKT3r063",
+      "matchId": "537333",
+      "homeScore": 1,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781288371,
+        "_nanoseconds": 561000000
       }
     },
     "sJ45PBHipXM9Qz4fjrwTuRHJRmf1_537327": {
@@ -1662,7 +2001,9 @@
       "updatedAt": {
         "_seconds": 1781193580,
         "_nanoseconds": 403000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "sJ45PBHipXM9Qz4fjrwTuRHJRmf1_537328": {
       "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
@@ -1672,7 +2013,9 @@
       "updatedAt": {
         "_seconds": 1781193303,
         "_nanoseconds": 863000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
     },
     "sJ45PBHipXM9Qz4fjrwTuRHJRmf1_537333": {
       "userId": "sJ45PBHipXM9Qz4fjrwTuRHJRmf1",
@@ -1692,6 +2035,40 @@
       "updatedAt": {
         "_seconds": 1781197673,
         "_nanoseconds": 218000000
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
+    },
+    "uMXkUjx7dUYA4DCcucCsed4z7Id2_537328": {
+      "userId": "uMXkUjx7dUYA4DCcucCsed4z7Id2",
+      "matchId": "537328",
+      "homeScore": 0,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781213136,
+        "_nanoseconds": 140000000
+      },
+      "isProcessed": true,
+      "earnedPoints": 0
+    },
+    "uMXkUjx7dUYA4DCcucCsed4z7Id2_537333": {
+      "userId": "uMXkUjx7dUYA4DCcucCsed4z7Id2",
+      "matchId": "537333",
+      "homeScore": 2,
+      "awayScore": 1,
+      "updatedAt": {
+        "_seconds": 1781267005,
+        "_nanoseconds": 917000000
+      }
+    },
+    "uMXkUjx7dUYA4DCcucCsed4z7Id2_537345": {
+      "userId": "uMXkUjx7dUYA4DCcucCsed4z7Id2",
+      "matchId": "537345",
+      "homeScore": 1,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781267832,
+        "_nanoseconds": 188000000
       }
     },
     "vY6afke5F5hwhy5FpFRQsMnfCd43_537327": {
@@ -1702,7 +2079,9 @@
       "updatedAt": {
         "_seconds": 1781196761,
         "_nanoseconds": 46000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 3
     },
     "vY6afke5F5hwhy5FpFRQsMnfCd43_537328": {
       "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
@@ -1712,7 +2091,9 @@
       "updatedAt": {
         "_seconds": 1781196776,
         "_nanoseconds": 239000000
-      }
+      },
+      "isProcessed": true,
+      "earnedPoints": 1
     },
     "vY6afke5F5hwhy5FpFRQsMnfCd43_537333": {
       "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
@@ -1723,31 +2104,41 @@
         "_seconds": 1781196775,
         "_nanoseconds": 430000000
       }
+    },
+    "vY6afke5F5hwhy5FpFRQsMnfCd43_537334": {
+      "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
+      "matchId": "537334",
+      "homeScore": 0,
+      "awayScore": 2,
+      "updatedAt": {
+        "_seconds": 1781216474,
+        "_nanoseconds": 680000000
+      }
+    },
+    "vY6afke5F5hwhy5FpFRQsMnfCd43_537345": {
+      "userId": "vY6afke5F5hwhy5FpFRQsMnfCd43",
+      "matchId": "537345",
+      "homeScore": 1,
+      "awayScore": 0,
+      "updatedAt": {
+        "_seconds": 1781216462,
+        "_nanoseconds": 186000000
+      }
     }
   },
   "users": {
-    "8DjGm8gHX9aSOHP638XVLyAPznq1": {
-      "username": "baris",
-      "email": "barisguler93@gmail.comq",
-      "points": 0,
-      "exactMatches": 0,
-      "correctWinners": 0,
-      "createdAt": {
-        "_seconds": 1781193245,
-        "_nanoseconds": 245000000
-      }
-    },
     "9u7a6EvfOdYP86W6loUg50mdLUr2": {
       "username": "RidvanC",
       "email": "ridvan.celebi@yandex.com",
-      "points": 0,
       "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781196874,
         "_nanoseconds": 562000000
       },
-      "livePoints": 2
+      "diffMatches": 0,
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "CJz3gLLfiIPyTFYUwSEsSFjcZpI3": {
       "username": "IFK",
@@ -1758,115 +2149,138 @@
       "createdAt": {
         "_seconds": 1781196347,
         "_nanoseconds": 386000000
-      }
+      },
+      "livePoints": 0
     },
     "EX5BYcb56YbaBPwxGhoEuqEmWyH2": {
       "username": "arda",
       "email": "arda.ozdemir5454@gmail.com",
-      "points": 0,
-      "exactMatches": 0,
       "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781199460,
         "_nanoseconds": 692000000
       },
-      "livePoints": 1
+      "exactMatches": 1,
+      "diffMatches": 0,
+      "points": 3,
+      "livePoints": 0
     },
     "KC5WqoRiOaUyjXjM9CkLrCw9G8w2": {
       "username": "Candik",
       "email": "can_dik1@hotmail.com",
-      "points": 0,
       "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781200198,
         "_nanoseconds": 408000000
       },
-      "livePoints": 2
+      "diffMatches": 0,
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "LSmWMfhIvJdodnqHDg8xPY37lE52": {
       "username": "Oguzhang",
       "email": "oguzhangurel8@gmail.com",
-      "points": 0,
-      "exactMatches": 0,
       "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781199689,
         "_nanoseconds": 224000000
       },
-      "livePoints": 1
+      "exactMatches": 1,
+      "diffMatches": 0,
+      "points": 3,
+      "livePoints": 0
+    },
+    "T7YXvcxiwDVrDAuQLsOpXC0LFIE3": {
+      "email": "barisguler93@gmail.com",
+      "username": "barisguler93",
+      "exactMatches": 0,
+      "diffMatches": 0,
+      "createdAt": {
+        "_seconds": 1781208478,
+        "_nanoseconds": 657000000
+      },
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "TvI1jc7e7CQynrfqbaPP3qspna33": {
       "username": "Mehmet",
       "email": "mnakilci92@gmail.com",
-      "points": 0,
       "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781197752,
         "_nanoseconds": 219000000
       },
-      "livePoints": 2
+      "diffMatches": 0,
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "blvwVeXoMQZqxMiNpXFiggChq5g2": {
       "username": "Ramonibal",
       "email": "dulekramazan2@gmail.com",
-      "points": 0,
       "exactMatches": 0,
       "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781193137,
         "_nanoseconds": 466000000
       },
-      "livePoints": 1
+      "diffMatches": 1,
+      "points": 2,
+      "livePoints": 0
     },
     "nncLCigHI1dtDORgLSZAeKT3r063": {
       "username": "Abozdag",
       "email": "ahmet.bozdag@nttdata.com",
-      "points": 0,
       "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781197003,
         "_nanoseconds": 958000000
       },
-      "livePoints": 2
+      "diffMatches": 0,
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "sJ45PBHipXM9Qz4fjrwTuRHJRmf1": {
       "username": "Utifisseye",
       "email": "oner.ozturk@hotmail.com",
-      "points": 0,
       "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781193264,
         "_nanoseconds": 447000000
       },
-      "livePoints": 2
+      "diffMatches": 0,
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "uMXkUjx7dUYA4DCcucCsed4z7Id2": {
       "username": "Creaman",
       "email": "omerkaansevinc@gmail.com",
-      "points": 0,
       "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781197582,
         "_nanoseconds": 775000000
       },
-      "livePoints": 2
+      "diffMatches": 0,
+      "correctWinners": 1,
+      "points": 1,
+      "livePoints": 0
     },
     "vY6afke5F5hwhy5FpFRQsMnfCd43": {
       "username": "Staskan",
       "email": "serkan_taskan@hotmail.com",
-      "points": 0,
-      "exactMatches": 0,
-      "correctWinners": 0,
       "createdAt": {
         "_seconds": 1781196718,
         "_nanoseconds": 628000000
       },
-      "livePoints": 1
+      "exactMatches": 1,
+      "diffMatches": 0,
+      "livePoints": 0,
+      "correctWinners": 1,
+      "points": 4
     }
   }
 }

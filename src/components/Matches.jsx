@@ -210,13 +210,10 @@ export default function Matches() {
 
     const allMatchIds = currentMatches.map(m => m.id);
 
-    const activeMatches = currentMatches.filter(m => 
-      ['IN_PLAY', 'PAUSED', 'FINISHED'].includes(m.status) && 
-      m.result?.home !== null && m.result?.away !== null &&
-      m.result?.home !== undefined && m.result?.away !== undefined
-    );
+    const allMatchesFinished = currentMatches.every(m => m.status === 'FINISHED');
+    const activeMatches = currentMatches.filter(m => m.status === 'FINISHED' && m.result?.home !== undefined);
     
-    if (activeMatches.length === 0) {
+    if (!allMatchesFinished || activeMatches.length === 0) {
       setDailyLeaders([]);
     } else {
       const activeMatchIds = activeMatches.map(m => m.id);
