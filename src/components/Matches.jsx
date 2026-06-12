@@ -240,8 +240,9 @@ export default function Matches() {
             const predDiff = predHome - predAway;
 
             const isExact = (actualHome === predHome && actualAway === predAway);
-            const isDiff = (actualDiff === predDiff);
             const isWinner = (Math.sign(actualDiff) === Math.sign(predDiff));
+            // Beraberlik durumlarında (actualDiff === 0) fark (isDiff) kuralı uygulanmaz
+            const isDiff = (actualDiff !== 0 && actualDiff === predDiff);
 
             let points = 0;
             if (isExact) points = 3;
@@ -249,14 +250,18 @@ export default function Matches() {
             else if (isWinner) points = 1;
 
             if (points > 0 && pred.userId) {
-              if (!userPoints[pred.userId]) userPoints[pred.userId] = 0;
-              userPoints[pred.userId] += points;
+              if (!userPoints[pred.userId]) userPoints[pred.userId] = { points: 0, exactCount: 0 };
+              userPoints[pred.userId].points += points;
+              if (isExact) userPoints[pred.userId].exactCount += 1;
             }
           });
 
           const leaders = Object.entries(userPoints)
-            .map(([userId, points]) => ({ userId, points }))
-            .sort((a, b) => b.points - a.points)
+            .map(([userId, data]) => ({ userId, points: data.points, exactCount: data.exactCount }))
+            .sort((a, b) => {
+              if (b.points !== a.points) return b.points - a.points;
+              return b.exactCount - a.exactCount;
+            })
             .slice(0, 3);
             
           setDailyLeaders(leaders);

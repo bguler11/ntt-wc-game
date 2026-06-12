@@ -107,8 +107,9 @@ async function syncMatches() {
           const predDiff = predHome - predAway;
 
           const isExact = (actualHome === predHome && actualAway === predAway);
-          const isDiff = (actualDiff === predDiff);
           const isWinner = (Math.sign(actualDiff) === Math.sign(predDiff));
+          // Beraberlik durumlarında (actualDiff === 0) fark (isDiff) kuralı uygulanmaz, sadece taraf (isWinner) puanı (1p) verilir.
+          const isDiff = (actualDiff !== 0 && actualDiff === predDiff);
 
           let points = 0;
           let exactCount = 0;
