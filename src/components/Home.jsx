@@ -5,7 +5,7 @@ import { LogOut } from 'lucide-react';
 import Matches from './Matches';
 import logo from '../assets/logo.png';
 
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export default function Home() {
@@ -13,6 +13,7 @@ export default function Home() {
   const navigate = useNavigate();
   const [username, setUsername] = React.useState('');
   const [scrolled, setScrolled] = React.useState(false);
+  const [isLive, setIsLive] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,28 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Aktif maç kontrolü (Arka plandaki ESPN API'nin uyanık olduğu saatler)
+  React.useEffect(() => {
+    const unsub = onSnapshot(collection(db, 'matches'), (snap) => {
+      let active = false;
+      const now = new Date();
+      snap.forEach(doc => {
+        const data = doc.data();
+        if (data.status === 'IN_PLAY' || data.status === 'PAUSED') {
+          active = true;
+        } else if (data.date && data.status !== 'FINISHED') {
+          const matchDate = new Date(data.date);
+          const diffMinutes = (now - matchDate) / 1000 / 60;
+          if (diffMinutes >= -5 && diffMinutes <= 160) {
+            active = true;
+          }
+        }
+      });
+      setIsLive(active);
+    });
+    return () => unsub();
   }, []);
 
   React.useEffect(() => {
@@ -56,8 +79,14 @@ export default function Home() {
 
   return (
     <div>
-      <header className={`header-container ${scrolled ? 'scrolled' : ''}`}>
-        <h1 className={`text-gradient header-title ${scrolled ? 'scrolled-text' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0, transition: 'all 0.3s ease' }}>
+      <style>{`
+        @keyframes livePulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
+        }
+      `}</style>
+      <header className={\`header-container \${scrolled ? 'scrolled' : ''}\`}>
+        <h1 className={\`text-gradient header-title \${scrolled ? 'scrolled-text' : ''}\`} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0, transition: 'all 0.3s ease' }}>
           <img src={logo} alt="Dünya Kupası Logo" style={{ width: scrolled ? '36px' : '44px', height: scrolled ? '36px' : '44px', borderRadius: '50%', transition: 'all 0.3s ease' }} />
           <span style={{ 
             opacity: scrolled ? 0 : 1, 
@@ -89,8 +118,35 @@ export default function Home() {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.5rem' }}>Maçlar</h2>
-        <button onClick={() => navigate('/leaderboard')} className="btn btn-secondary">
+        <button 
+          onClick={() => navigate('/leaderboard')} 
+          className="btn btn-secondary"
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.5rem', 
+            fontSize: isLive ? '0.85rem' : '1rem', // LIVE etiketi varsa font küçülür
+            padding: isLive ? '0.4rem 0.8rem' : '0.5rem 1rem',
+            transition: 'all 0.3s ease'
+          }}
+        >
           🏆 Liderlik Tablosu
+          {isLive && (
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              backgroundColor: '#ef4444',
+              color: 'white',
+              fontSize: '0.7rem',
+              fontWeight: 'bold',
+              padding: '0.15rem 0.4rem',
+              borderRadius: '9999px',
+              animation: 'livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+            }}>
+              <span style={{ width: '6px', height: '6px', backgroundColor: 'white', borderRadius: '50%', marginRight: '4px' }}></span>
+              LIVE
+            </span>
+          )}
         </button>
       </div>
 
