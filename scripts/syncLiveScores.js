@@ -35,7 +35,22 @@ async function syncLiveScores() {
   });
 
   if (!hasActiveMatch) {
-    console.log(`Şu an (veya son 160 dakika içinde) başlamış bir maç bulunmuyor. ESPN API'sine istek atılmayacak (Sıfır Maliyet Uyku Modu).`);
+    console.log(`Şu an (veya son 160 dakika içinde) başlamış bir maç bulunmuyor.`);
+    
+    // Uyku moduna geçildiğinde veritabanında askıda kalan canlı puanları (livePoints) temizle
+    try {
+      const usersSnap = await db.collection('users').where('livePoints', '>', 0).get();
+      if (!usersSnap.empty) {
+        const batch = db.batch();
+        usersSnap.docs.forEach(u => batch.update(u.ref, { livePoints: 0 }));
+        await batch.commit();
+        console.log(`${usersSnap.size} kullanicinin askida kalan canli puani sifirlandi.`);
+      }
+    } catch(err) {
+      console.error("Uyku modunda canli puanlar sifirlanirken hata:", err);
+    }
+
+    console.log(`ESPN API'sine istek atilmayacak (Sifir Maliyet Uyku Modu).`);
     process.exit(0);
   }
 
