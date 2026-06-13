@@ -1,0 +1,31 @@
+name: Sync Fixture & Permanent Points
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Her 30 dakikada bir çalışarak kalıcı puanları hesaplar
+  workflow_dispatch:
+
+concurrency:
+  group: sync-matches
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Create Firebase Service Account JSON
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > ntt-wc-game-6c5fcc94ae05.json
+
+      - name: Run Main Sync Script
+        run: node scripts/syncMatches.js

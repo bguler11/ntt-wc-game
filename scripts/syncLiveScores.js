@@ -8,15 +8,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function syncLiveScores() {
-  console.log(`[1/3] Firebase baslatiliyor...`);
-  const serviceAccountPath = path.join(__dirname, '..', 'ntt-wc-game-6c5fcc94ae05.json');
-  const serviceAccountData = await fs.readFile(serviceAccountPath, 'utf8');
-  const serviceAccount = JSON.parse(serviceAccountData);
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  initializeApp({ credential: cert(serviceAccount) });
-  const db = getFirestore();
-
+async function syncLiveScoresOnce(db) {
   console.log(`[*] Veritabanindaki mac saatleri kontrol ediliyor...`);
   const now = new Date();
   const matchQuery = await db.collection('matches').get();
@@ -51,10 +47,10 @@ async function syncLiveScores() {
     }
 
     console.log(`ESPN API'sine istek atilmayacak (Sifir Maliyet Uyku Modu).`);
-    process.exit(0);
+    return false; // Döngüyü kır
   }
 
-  console.log(`[2/3] Aktif mac bulundu! ESPN API'den canli maclar cekiliyor...`);
+  console.log(`[*] Aktif mac bulundu! ESPN API'den canli maclar cekiliyor...`);
   const url = `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard`;
   
   try {
@@ -62,7 +58,7 @@ async function syncLiveScores() {
     const data = await res.json();
     if (!data.events) {
       console.log("Bugun icin ESPN API'de mac bulunamadi.");
-      process.exit(0);
+      return false; // Hata veya maç yoksa döngüyü kır, 15 dk sonraki cron tekrar denesin
     }
 
     // state: "in" (live), "post" (finished)
@@ -121,7 +117,6 @@ async function syncLiveScores() {
 
           const isExact = (homeScore === predHome && awayScore === predAway);
           const isWinner = (Math.sign(actualDiff) === Math.sign(predDiff));
-          // Beraberlik durumlarında (actualDiff === 0) fark (isDiff) kuralı uygulanmaz, sadece taraf (isWinner) puanı (1p) verilir.
           const isDiff = (actualDiff !== 0 && actualDiff === predDiff);
 
           let points = 0;
@@ -138,7 +133,7 @@ async function syncLiveScores() {
       }
     }
 
-    console.log(`[3/3] Kullanici canli puanlari guncelleniyor...`);
+    console.log(`[*] Kullanici canli puanlari guncelleniyor...`);
     const usersSnap = await db.collection('users').get();
     const batch = db.batch();
     let updatedCount = 0;
@@ -161,10 +156,41 @@ async function syncLiveScores() {
     }
 
     console.log(`Canli skor guncellemesi tamamlandi.`);
-    process.exit(0);
+    return true; // Hala aktif maç var, döngüye devam et
   } catch(e) {
     console.error("HATA:", e);
-    process.exit(1);
+    return false; // Hata durumunda sonsuz döngüyü kır
   }
 }
-syncLiveScores();
+
+async function main() {
+  console.log(`[1/2] Firebase baslatiliyor...`);
+  const serviceAccountPath = path.join(__dirname, '..', 'ntt-wc-game-6c5fcc94ae05.json');
+  let serviceAccount;
+  
+  try {
+    const serviceAccountData = await fs.readFile(serviceAccountPath, 'utf8');
+    serviceAccount = JSON.parse(serviceAccountData);
+  } catch(err) {
+    console.error("Service Account bulunamadi veya gecersiz:", err.message);
+    process.exit(1);
+  }
+
+  initializeApp({ credential: cert(serviceAccount) });
+  const db = getFirestore();
+
+  console.log(`[2/2] Canli Skor dongusu basliyor...`);
+  while (true) {
+    const keepRunning = await syncLiveScoresOnce(db);
+    if (!keepRunning) {
+      console.log("Aktif mac kalmadi veya islem tamamlandi. Dongu sonlandiriliyor.");
+      break;
+    }
+    console.log("Skorlar guncellendi. 60 saniye bekliyor...\n");
+    await sleep(60000); // 60 saniye bekle
+  }
+  
+  process.exit(0);
+}
+
+main();
