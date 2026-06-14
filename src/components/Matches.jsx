@@ -901,6 +901,9 @@ export default function Matches() {
                             {u?.favoriteFlag && <img src={u.favoriteFlag} alt="flag" width="16" style={{ borderRadius: '2px' }} />}
                             {name}
                             {pred.userId === currentUser?.uid && <span style={{ fontSize: '0.7rem', backgroundColor: 'var(--accent-primary)', padding: '2px 6px', borderRadius: '4px', color: 'white' }}>(Sen)</span>}
+                            {selectedMatch.result && selectedMatch.result.home == pred.homeScore && selectedMatch.result.away == pred.awayScore && (
+                              <span title="Tam İsabet!" style={{ fontSize: '1.2rem', animation: 'livePulse 2s infinite' }}>🎉</span>
+                            )}
                           </span>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             <span style={{ 
