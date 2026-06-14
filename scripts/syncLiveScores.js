@@ -80,6 +80,10 @@ async function syncLiveScoresOnce(db) {
       
       if(homeTeam === 'Bosnia-Herzegovina') homeTeam = 'Bosnia-Herzegovina'; 
       if(awayTeam === 'Bosnia-Herzegovina') awayTeam = 'Bosnia-Herzegovina';
+      
+      // ESPN 'Türkiye' gönderiyor, Firebase'de 'Turkey' kayıtlı.
+      if(homeTeam === 'Türkiye') homeTeam = 'Turkey';
+      if(awayTeam === 'Türkiye') awayTeam = 'Turkey';
 
       const homeScore = parseInt(homeTeamObj.score) || 0;
       const awayScore = parseInt(awayTeamObj.score) || 0;
