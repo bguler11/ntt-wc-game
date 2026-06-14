@@ -5,6 +5,23 @@ import { useAuth } from '../contexts/AuthContext';
 import { differenceInHours, differenceInMinutes, parseISO, isAfter } from 'date-fns';
 import { ChevronLeft, ChevronRight, Eye, MessageCircle, Send, Trash2, AlertCircle, Edit2, Check, X, Share2 } from 'lucide-react';
 
+const formatStylishTime = (dateValue) => {
+  if (!dateValue) return '';
+  const date = dateValue.toDate ? dateValue.toDate() : new Date(dateValue.seconds ? dateValue.seconds * 1000 : dateValue);
+  const now = new Date();
+  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+  
+  const timeStr = date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+  
+  if (diffDays === 0 && date.getDate() === now.getDate()) {
+    return `Bugün ${timeStr}`;
+  } else if (diffDays === 1 || (diffDays === 0 && date.getDate() !== now.getDate())) {
+    return `Dün ${timeStr}`;
+  } else {
+    return `${date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })} ${timeStr}`;
+  }
+};
+
 export default function Matches() {
   const [matches, setMatches] = useState([]);
   const [predictions, setPredictions] = useState({});
@@ -733,24 +750,29 @@ export default function Matches() {
                                     {usersMap[c.userId]?.favoriteFlag && <img src={usersMap[c.userId].favoriteFlag} alt="flag" width="14" style={{ borderRadius: '2px' }} />}
                                     {isMine ? 'Sen' : userName}
                                   </span>
-                                  {isMine && !isEditing && (
-                                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                      <button 
-                                        onClick={() => { setEditingCommentId(c.id); setEditCommentText(c.text); }}
-                                        style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
-                                        title="Yorumu Düzenle"
-                                      >
-                                        <Edit2 size={12} />
-                                      </button>
-                                      <button 
-                                        onClick={() => setDeleteModal({ isOpen: true, commentId: c.id })}
-                                        style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
-                                        title="Yorumu Sil"
-                                      >
-                                        <Trash2 size={12} />
-                                      </button>
-                                    </div>
-                                  )}
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' }}>
+                                      {formatStylishTime(c.createdAt)}
+                                    </span>
+                                    {isMine && !isEditing && (
+                                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                        <button 
+                                          onClick={() => { setEditingCommentId(c.id); setEditCommentText(c.text); }}
+                                          style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
+                                          title="Yorumu Düzenle"
+                                        >
+                                          <Edit2 size={12} />
+                                        </button>
+                                        <button 
+                                          onClick={() => setDeleteModal({ isOpen: true, commentId: c.id })}
+                                          style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
+                                          title="Yorumu Sil"
+                                        >
+                                          <Trash2 size={12} />
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                                 {isEditing ? (
                                   <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
@@ -804,7 +826,7 @@ export default function Matches() {
                                     }}
                                     title="Bu mesajı Ana Kulis'e yolla"
                                   >
-                                    <Share2 size={12} /> Ana Kulis'e Gönder
+                                    <Share2 size={14} />
                                   </button>
                                 </div>
                               </div>

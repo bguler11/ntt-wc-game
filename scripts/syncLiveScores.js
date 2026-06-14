@@ -62,7 +62,7 @@ async function syncLiveScoresOnce(db) {
     }
 
     // state: "in" (live), "post" (finished)
-    const liveEvents = data.events.filter(e => e.status.type.state === 'in' || e.status.type.state === 'post');
+    const liveEvents = data.events.filter(e => e?.status?.type?.state === 'in' || e?.status?.type?.state === 'post');
     
     console.log(`ESPN API'de ${liveEvents.length} adet CANLI veya BITMIS mac bulundu.`);
 
