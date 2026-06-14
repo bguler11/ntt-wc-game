@@ -3,6 +3,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import Matches from './Matches';
+import GlobalChat from './GlobalChat';
+import ProfileModal from './ProfileModal';
 import logo from '../assets/logo.png';
 
 import { doc, getDoc, collection, onSnapshot } from 'firebase/firestore';
@@ -12,8 +14,10 @@ export default function Home() {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = React.useState('');
+  const [favoriteFlag, setFavoriteFlag] = React.useState('');
   const [scrolled, setScrolled] = React.useState(false);
   const [isLive, setIsLive] = React.useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -55,8 +59,9 @@ export default function Home() {
         try {
           const userRef = doc(db, 'users', currentUser.uid);
           const userSnap = await getDoc(userRef);
-          if (userSnap.exists() && userSnap.data().username) {
-            setUsername(userSnap.data().username);
+          if (userSnap.exists()) {
+            setUsername(userSnap.data().username || currentUser.email.split('@')[0]);
+            setFavoriteFlag(userSnap.data().favoriteFlag || "");
           } else {
             setUsername(currentUser.email.split('@')[0]);
           }
@@ -101,9 +106,16 @@ export default function Home() {
         </h1>
         {currentUser ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span className="header-user-name">
-              {username || currentUser.email.split('@')[0]}
-            </span>
+            <div 
+              onClick={() => setIsProfileModalOpen(true)}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', padding: '0.25rem 0.5rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid var(--glass-border)' }}
+              title="Profil Ayarları"
+            >
+              {favoriteFlag && <img src={favoriteFlag} alt="Bayrak" width="20" style={{ borderRadius: '2px' }} />}
+              <span className="header-user-name" style={{ margin: 0, fontWeight: 'bold', color: 'var(--accent-primary)' }}>
+                {username || currentUser.email.split('@')[0]}
+              </span>
+            </div>
             <button onClick={handleLogout} className="btn btn-secondary btn-logout" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
               <LogOut size={16} />
               <span className="header-logout-text">Çıkış</span>
@@ -151,6 +163,26 @@ export default function Home() {
       </div>
 
       <Matches />
+      
+      {/* Küresel Sohbet / Ana Kulis */}
+      <GlobalChat />
+
+      {/* Profil Ayarları Modalı */}
+      <ProfileModal 
+        isOpen={isProfileModalOpen} 
+        onClose={() => {
+          setIsProfileModalOpen(false);
+          // Modalı kapattıktan sonra ismi/bayrağı yenilemek için tetiklenebilir
+          if (currentUser) {
+            getDoc(doc(db, 'users', currentUser.uid)).then(snap => {
+              if (snap.exists()) {
+                setUsername(snap.data().username || currentUser.email.split('@')[0]);
+                setFavoriteFlag(snap.data().favoriteFlag || "");
+              }
+            });
+          }
+        }} 
+      />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { db } from '../firebase';
-import { collection, onSnapshot, doc, setDoc, query, orderBy, where, getDocs, updateDoc } from 'firebase/firestore';
+import { collection, onSnapshot, doc, setDoc, addDoc, query, orderBy, where, getDocs, updateDoc } from 'firebase/firestore';
 import { useAuth } from '../contexts/AuthContext';
 import { differenceInHours, differenceInMinutes, parseISO, isAfter } from 'date-fns';
-import { ChevronLeft, ChevronRight, Eye, MessageCircle, Send, Trash2, AlertCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Eye, MessageCircle, Send, Trash2, AlertCircle, Edit2, Check, X, Share2 } from 'lucide-react';
 
 export default function Matches() {
   const [matches, setMatches] = useState([]);
@@ -21,6 +21,8 @@ export default function Matches() {
   const [expandedComments, setExpandedComments] = useState({});
   const [commentInputs, setCommentInputs] = useState({});
   const [commentLoading, setCommentLoading] = useState(false);
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [editCommentText, setEditCommentText] = useState("");
 
   // Custom Toast State
   const [toastMsg, setToastMsg] = useState(null);
@@ -377,11 +379,7 @@ export default function Matches() {
     }
   };
 
-  const submitComment = async (matchId, isLocked) => {
-    if (isLocked) {
-      showToast("Maç başladığı için yorumlar kapanmıştır.", "error");
-      return;
-    }
+  const submitComment = async (matchId) => {
     const text = commentInputs[matchId]?.trim();
     if (!text) return;
 
@@ -400,6 +398,83 @@ export default function Matches() {
       showToast("Yorum gönderilemedi.", "error");
     }
     setCommentLoading(false);
+  };
+
+  const submitEditComment = async (commentId) => {
+    if (!editCommentText.trim()) return;
+    try {
+      await updateDoc(doc(db, 'comments', commentId), { text: editCommentText.trim(), isEdited: true, updatedAt: new Date() });
+      setEditingCommentId(null);
+      setEditCommentText("");
+    } catch (err) {
+      console.error("Yorum düzenlenemedi", err);
+      showToast("Yorum düzenlenemedi.", "error");
+    }
+  };
+
+  const toggleReaction = async (commentId, reactionType) => {
+    try {
+      let commentToReact = null;
+      for (const matchId in comments) {
+        const found = comments[matchId].find(c => c.id === commentId);
+        if (found) {
+          commentToReact = found;
+          break;
+        }
+      }
+      if (!commentToReact) return;
+      
+      const currentReactions = commentToReact[reactionType] || [];
+      let newReactions;
+      if (currentReactions.includes(currentUser.uid)) {
+        newReactions = currentReactions.filter(id => id !== currentUser.uid);
+      } else {
+        newReactions = [...currentReactions, currentUser.uid];
+      }
+      
+      await updateDoc(doc(db, 'comments', commentId), { [reactionType]: newReactions });
+    } catch (err) {
+      console.error("Reaksiyon eklenemedi:", err);
+      showToast("Bir hata oluştu.", "error");
+    }
+  };
+
+  const forwardToGlobalChat = async (comment, match) => {
+    try {
+      const authorName = usersMap[comment.userId]?.username || usersMap[comment.userId]?.email?.split('@')[0] || 'Gizemli Oyuncu';
+      await addDoc(collection(db, 'global_chat'), {
+        text: "",
+        userId: currentUser.uid,
+        createdAt: new Date(),
+        isForwarded: true,
+        forwardedText: comment.text,
+        forwardedAuthor: authorName,
+        forwardedMatch: `${match.homeTeam} vs ${match.awayTeam}`
+      });
+      showToast("Yorum Ana Kulis'e iletildi!", "success");
+    } catch (err) {
+      console.error("Yorum iletilemedi:", err);
+      showToast("Yorum iletilemedi.", "error");
+    }
+  };
+
+  const forwardPredictionToGlobalChat = async (pred, match) => {
+    try {
+      const authorName = usersMap[pred.userId]?.username || usersMap[pred.userId]?.email?.split('@')[0] || 'Gizemli Oyuncu';
+      await addDoc(collection(db, 'global_chat'), {
+        text: "",
+        userId: currentUser.uid,
+        createdAt: new Date(),
+        isForwarded: true,
+        forwardedText: `Tahmin: ${pred.homeScore} - ${pred.awayScore}`,
+        forwardedAuthor: authorName,
+        forwardedMatch: `${match.homeTeam} vs ${match.awayTeam}`
+      });
+      showToast("Tahmin Ana Kulis'e iletildi!", "success");
+    } catch (err) {
+      console.error("Tahmin iletilemedi:", err);
+      showToast("Tahmin iletilemedi.", "error");
+    }
   };
 
   if (matches.length === 0) {
@@ -483,7 +558,10 @@ export default function Matches() {
               return (
                 <div key={leader.userId} style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem 1rem', borderRadius: '12px', minWidth: '120px' }}>
                   <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{medal}</div>
-                  <div style={{ fontWeight: 'bold', color: 'white' }}>{name}</div>
+                  <div style={{ fontWeight: 'bold', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}>
+                    {usersMap[leader.userId]?.favoriteFlag && <img src={usersMap[leader.userId].favoriteFlag} alt="flag" width="16" style={{ borderRadius: '2px' }} />}
+                    {name}
+                  </div>
                   <div style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', fontWeight: 'bold' }}>{leader.points} Puan</div>
                 </div>
               );
@@ -620,70 +698,131 @@ export default function Matches() {
                 style={{ marginTop: '0.5rem', padding: '0.5rem', fontSize: '0.875rem', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid var(--glass-border)' }}
                 onClick={() => toggleComments(match.id)}
               >
-                <MessageCircle size={18} /> {expandedComments[match.id] ? 'Kulisi Gizle' : `Maç Öncesi Kulisi (${comments[match.id]?.length || 0})`}
+                <MessageCircle size={18} /> {expandedComments[match.id] ? 'Kulisi Gizle' : `Maç Kulisi (${comments[match.id]?.length || 0})`}
               </button>
 
               {expandedComments[match.id] && (
                 <div style={{ width: '100%', marginTop: '1rem', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: '12px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div style={{ maxHeight: '200px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingRight: '0.5rem' }}>
-                    {(!comments[match.id] || comments[match.id].length === 0) ? (
-                      <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.875rem', padding: '1rem 0' }}>
-                        Henüz yorum yok. İlk taşı sen at! 🎯
-                      </div>
-                    ) : (
-                      comments[match.id].map(c => {
-                        const isMine = c.userId === currentUser.uid;
-                        const userName = usersMap[c.userId]?.username || usersMap[c.userId]?.email?.split('@')[0] || 'Gizemli Oyuncu';
-                        return (
-                          <div key={c.id} style={{ display: 'flex', justifyContent: isMine ? 'flex-end' : 'flex-start' }}>
-                            <div style={{ 
-                              maxWidth: '80%', 
-                              padding: '0.5rem 0.75rem', 
-                              borderRadius: '12px', 
-                              backgroundColor: isMine ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255,255,255,0.05)',
-                              border: `1px solid ${isMine ? 'rgba(16, 185, 129, 0.3)' : 'var(--glass-border)'}`,
-                              display: 'flex',
-                              flexDirection: 'column',
-                              gap: '0.25rem',
-                              position: 'relative'
-                            }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
-                                <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: isMine ? 'var(--success)' : 'var(--accent-primary)' }}>
-                                  {isMine ? 'Sen' : userName}
-                                </span>
-                                {isMine && !c.isDeleted && (
-                                  <button 
-                                    onClick={() => setDeleteModal({ isOpen: true, commentId: c.id })}
-                                    style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
-                                    title="Yorumu Sil (Gizle)"
-                                  >
-                                    <Trash2 size={12} />
-                                  </button>
-                                )}
-                              </div>
-                              <span style={{ 
-                                fontSize: '0.875rem', 
-                                wordBreak: 'break-word', 
-                                color: c.isDeleted ? 'rgba(255,255,255,0.4)' : 'white',
-                                fontStyle: c.isDeleted ? 'italic' : 'normal'
+                    {(() => {
+                      const activeComments = comments[match.id]?.filter(c => !c.isDeleted) || [];
+                      return activeComments.length === 0 ? (
+                        <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.875rem', padding: '1rem 0' }}>
+                          Henüz yorum yok. İlk taşı sen at! 🎯
+                        </div>
+                      ) : (
+                        activeComments.map(c => {
+                          const isMine = c.userId === currentUser.uid;
+                          const userName = usersMap[c.userId]?.username || usersMap[c.userId]?.email?.split('@')[0] || 'Gizemli Oyuncu';
+                          const isEditing = editingCommentId === c.id;
+                          return (
+                            <div key={c.id} style={{ display: 'flex', justifyContent: isMine ? 'flex-end' : 'flex-start' }}>
+                              <div style={{ 
+                                maxWidth: '80%', 
+                                padding: '0.5rem 0.75rem', 
+                                borderRadius: '12px', 
+                                backgroundColor: isMine ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255,255,255,0.05)',
+                                border: `1px solid ${isMine ? 'rgba(16, 185, 129, 0.3)' : 'var(--glass-border)'}`,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '0.25rem',
+                                position: 'relative'
                               }}>
-                                {c.isDeleted ? `🚫 ${userName} bu söylediklerini geri aldı.` : c.text}
-                              </span>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                                  <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: isMine ? 'var(--success)' : 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                                    {usersMap[c.userId]?.favoriteFlag && <img src={usersMap[c.userId].favoriteFlag} alt="flag" width="14" style={{ borderRadius: '2px' }} />}
+                                    {isMine ? 'Sen' : userName}
+                                  </span>
+                                  {isMine && !isEditing && (
+                                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                      <button 
+                                        onClick={() => { setEditingCommentId(c.id); setEditCommentText(c.text); }}
+                                        style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
+                                        title="Yorumu Düzenle"
+                                      >
+                                        <Edit2 size={12} />
+                                      </button>
+                                      <button 
+                                        onClick={() => setDeleteModal({ isOpen: true, commentId: c.id })}
+                                        style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', padding: 0 }}
+                                        title="Yorumu Sil"
+                                      >
+                                        <Trash2 size={12} />
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                                {isEditing ? (
+                                  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
+                                    <input 
+                                      type="text" 
+                                      value={editCommentText}
+                                      onChange={(e) => setEditCommentText(e.target.value)}
+                                      onKeyDown={(e) => { if (e.key === 'Enter') submitEditComment(c.id); else if (e.key === 'Escape') setEditingCommentId(null); }}
+                                      style={{ flex: 1, padding: '0.25rem 0.5rem', borderRadius: '4px', border: '1px solid var(--glass-border)', backgroundColor: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none', fontSize: '0.875rem' }}
+                                      autoFocus
+                                    />
+                                    <button onClick={() => submitEditComment(c.id)} style={{ background: 'transparent', border: 'none', color: 'var(--success)', cursor: 'pointer', padding: 0 }}><Check size={14} /></button>
+                                    <button onClick={() => setEditingCommentId(null)} style={{ background: 'transparent', border: 'none', color: 'var(--danger)', cursor: 'pointer', padding: 0 }}><X size={14} /></button>
+                                  </div>
+                                ) : (
+                                  <span style={{ fontSize: '0.875rem', wordBreak: 'break-word', color: 'white' }}>
+                                    {c.text} {c.isEdited && <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginLeft: '0.25rem' }}>(düzenlendi)</span>}
+                                  </span>
+                                )}
+                                <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+                                  <button
+                                    onClick={() => toggleReaction(c.id, 'likes')}
+                                    style={{ 
+                                      background: c.likes?.includes(currentUser.uid) ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255,255,255,0.05)', 
+                                      border: `1px solid ${c.likes?.includes(currentUser.uid) ? 'rgba(59, 130, 246, 0.4)' : 'var(--glass-border)'}`, 
+                                      color: c.likes?.includes(currentUser.uid) ? '#60a5fa' : 'var(--text-secondary)', 
+                                      borderRadius: '12px', padding: '2px 8px', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem' 
+                                    }}
+                                  >
+                                    👍 {c.likes?.length || 0}
+                                  </button>
+                                  <button
+                                    onClick={() => toggleReaction(c.id, 'laughs')}
+                                    style={{ 
+                                      background: c.laughs?.includes(currentUser.uid) ? 'rgba(234, 179, 8, 0.2)' : 'rgba(255,255,255,0.05)', 
+                                      border: `1px solid ${c.laughs?.includes(currentUser.uid) ? 'rgba(234, 179, 8, 0.4)' : 'var(--glass-border)'}`, 
+                                      color: c.laughs?.includes(currentUser.uid) ? '#facc15' : 'var(--text-secondary)', 
+                                      borderRadius: '12px', padding: '2px 8px', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem' 
+                                    }}
+                                  >
+                                    😂 {c.laughs?.length || 0}
+                                  </button>
+                                  <button
+                                    onClick={() => forwardToGlobalChat(c, match)}
+                                    style={{ 
+                                      background: 'rgba(245, 158, 11, 0.1)', 
+                                      border: '1px solid rgba(245, 158, 11, 0.3)', 
+                                      color: 'var(--warning)', 
+                                      borderRadius: '12px', padding: '2px 8px', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem',
+                                      marginLeft: 'auto'
+                                    }}
+                                    title="Bu mesajı Ana Kulis'e yolla"
+                                  >
+                                    <Share2 size={12} /> Ana Kulis'e Gönder
+                                  </button>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })
-                    )}
+                          );
+                        })
+                      );
+                    })()}
                   </div>
                   
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <input 
                       type="text" 
-                      placeholder={isMatchStarted ? "Maç başladığı için kulis kapandı." : "Bir şeyler yaz..."}
+                      placeholder="Bir şeyler yaz..."
                       value={commentInputs[match.id] || ''}
                       onChange={(e) => handleCommentChange(match.id, e.target.value)}
-                      disabled={isMatchStarted || commentLoading}
-                      onKeyDown={(e) => { if (e.key === 'Enter') submitComment(match.id, isMatchStarted); }}
+                      disabled={commentLoading}
+                      onKeyDown={(e) => { if (e.key === 'Enter') submitComment(match.id); }}
                       style={{ 
                         flex: 1, 
                         padding: '0.5rem 1rem', 
@@ -697,8 +836,8 @@ export default function Matches() {
                     <button 
                       className="btn btn-primary" 
                       style={{ padding: '0.5rem 1rem', borderRadius: '20px' }}
-                      disabled={isMatchStarted || commentLoading || !commentInputs[match.id]?.trim()}
-                      onClick={() => submitComment(match.id, isMatchStarted)}
+                      disabled={commentLoading || !commentInputs[match.id]?.trim()}
+                      onClick={() => submitComment(match.id)}
                     >
                       <Send size={16} />
                     </button>
@@ -759,19 +898,35 @@ export default function Matches() {
                           marginBottom: '4px'
                         }}>
                           <span style={{ fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            {u?.favoriteFlag && <img src={u.favoriteFlag} alt="flag" width="16" style={{ borderRadius: '2px' }} />}
                             {name}
                             {pred.userId === currentUser?.uid && <span style={{ fontSize: '0.7rem', backgroundColor: 'var(--accent-primary)', padding: '2px 6px', borderRadius: '4px', color: 'white' }}>(Sen)</span>}
                           </span>
-                          <span style={{ 
-                            fontWeight: 'bold', 
-                            color: 'white',
-                            backgroundColor: 'rgba(0,0,0,0.3)',
-                            padding: '0.25rem 0.75rem',
-                            borderRadius: '8px',
-                            border: '1px solid var(--glass-border)'
-                          }}>
-                            {pred.homeScore} - {pred.awayScore}
-                          </span>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <span style={{ 
+                              fontWeight: 'bold', 
+                              color: 'white',
+                              backgroundColor: 'rgba(0,0,0,0.3)',
+                              padding: '0.25rem 0.75rem',
+                              borderRadius: '8px',
+                              border: '1px solid var(--glass-border)'
+                            }}>
+                              {pred.homeScore} - {pred.awayScore}
+                            </span>
+                            <button
+                              onClick={() => forwardPredictionToGlobalChat(pred, selectedMatch)}
+                              style={{
+                                background: 'transparent',
+                                border: 'none',
+                                color: 'var(--warning)',
+                                cursor: 'pointer',
+                                padding: '0.25rem'
+                              }}
+                              title="Bu tahmini Ana Kulis'e yolla"
+                            >
+                              <Share2 size={16} />
+                            </button>
+                          </div>
                         </li>
                       );
                   })}

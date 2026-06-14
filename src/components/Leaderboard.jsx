@@ -85,7 +85,8 @@ export default function Leaderboard() {
                         {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
                       </td>
                       <td style={{ padding: '1rem' }}>
-                        <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '1.1rem' }}>
+                        <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          {user.favoriteFlag && <img src={user.favoriteFlag} alt="flag" width="20" style={{ borderRadius: '2px' }} />}
                           {user.username || user.email?.split('@')[0] || 'İsimsiz Oyuncu'}
                         </div>
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
