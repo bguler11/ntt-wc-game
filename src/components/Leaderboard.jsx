@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Trophy } from 'lucide-react';
+import { ArrowLeft, Trophy, ArrowUp, ArrowDown, Minus } from 'lucide-react';
 
 export default function Leaderboard() {
   const [users, setUsers] = useState([]);
@@ -16,7 +16,23 @@ export default function Leaderboard() {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let usersData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       
-      // İstemci tarafında Toplam Puan (Ana Puan + Canlı Puan) ve Tam İsabet sayısına göre sırala
+      // 1. Önce sadece 'points' (ana puanlar) ile eski sırayı (baseRank) hesapla
+      const baseSorted = [...usersData].sort((a, b) => {
+        const aPoints = a.points || 0;
+        const bPoints = b.points || 0;
+        if (bPoints !== aPoints) return bPoints - aPoints;
+        
+        const aExact = a.exactMatches || 0;
+        const bExact = b.exactMatches || 0;
+        return bExact - aExact;
+      });
+
+      baseSorted.forEach((u, idx) => {
+        const originalUser = usersData.find(usr => usr.id === u.id);
+        if (originalUser) originalUser.baseRank = idx + 1;
+      });
+
+      // 2. Şimdi Toplam Puan (Ana Puan + Canlı Puan) ile asıl sıralamayı hesapla
       usersData.sort((a, b) => {
         const aPoints = (a.points || 0) + (a.livePoints || 0);
         const bPoints = (b.points || 0) + (b.livePoints || 0);
@@ -25,6 +41,10 @@ export default function Leaderboard() {
         const aExact = a.exactMatches || 0;
         const bExact = b.exactMatches || 0;
         return bExact - aExact;
+      });
+
+      usersData.forEach((u, idx) => {
+        u.currentRank = idx + 1;
       });
 
       setUsers(usersData);
@@ -82,7 +102,14 @@ export default function Leaderboard() {
                       }}
                     >
                       <td style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold', fontSize: index < 3 ? '1.25rem' : '1rem' }}>
-                        {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+                          <span>{index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1}</span>
+                          <div style={{ display: 'flex', alignItems: 'center' }}>
+                            {user.baseRank > user.currentRank && <ArrowUp size={16} color="var(--success)" title={`Yükseldi (Eski Sıra: ${user.baseRank})`} />}
+                            {user.baseRank < user.currentRank && <ArrowDown size={16} color="var(--danger)" title={`Düştü (Eski Sıra: ${user.baseRank})`} />}
+                            {user.baseRank === user.currentRank && <Minus size={16} color="var(--text-secondary)" title="Sabit" />}
+                          </div>
+                        </div>
                       </td>
                       <td style={{ padding: '1rem' }}>
                         <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
