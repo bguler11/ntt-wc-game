@@ -22,11 +22,15 @@ async function syncLiveScoresOnce(db) {
     const data = doc.data();
     if (data.date) {
       const matchDate = new Date(data.date);
-      // Maç şu anki zamandan önceki 160 dakika içinde mi başladı? Veya 5 dakika sonra mı başlayacak?
+      // Maç şu anki zamandan önceki 200 dakika içinde mi başladı? Veya 15 dakika sonra mı başlayacak?
       const diffMinutes = (now - matchDate) / 1000 / 60;
-      if (diffMinutes >= -5 && diffMinutes <= 160) {
+      if (diffMinutes >= -15 && diffMinutes <= 200) {
         hasActiveMatch = true;
       }
+    }
+    // Eğer maç rötar yaparsa veya uzatmalara/penaltılara giderse, durumu IN_PLAY/PAUSED olduğu sürece takip et
+    if (data.status === 'IN_PLAY' || data.status === 'PAUSED') {
+      hasActiveMatch = true;
     }
   });
 
@@ -84,6 +88,16 @@ async function syncLiveScoresOnce(db) {
       // ESPN 'Türkiye' gönderiyor, Firebase'de 'Turkey' kayıtlı.
       if(homeTeam === 'Türkiye') homeTeam = 'Turkey';
       if(awayTeam === 'Türkiye') awayTeam = 'Turkey';
+      
+      // Diğer ülke isim farklılıkları
+      if(homeTeam === 'Cape Verde') homeTeam = 'Cape Verde Islands';
+      if(awayTeam === 'Cape Verde') awayTeam = 'Cape Verde Islands';
+      
+      if(homeTeam === 'USA') homeTeam = 'United States';
+      if(awayTeam === 'USA') awayTeam = 'United States';
+      
+      if(homeTeam === 'Korea Republic') homeTeam = 'South Korea';
+      if(awayTeam === 'Korea Republic') awayTeam = 'South Korea';
 
       const homeScore = parseInt(homeTeamObj.score) || 0;
       const awayScore = parseInt(awayTeamObj.score) || 0;
@@ -95,7 +109,12 @@ async function syncLiveScoresOnce(db) {
         .get();
 
       if (!matchQuery.empty) {
-        const matchDocSnap = matchQuery.docs[0];
+        // İki takım turnuvada birden fazla kez karşılaşabilir (Grup ve Eleme), tarihi yakın olanı al
+        let matchDocSnap = matchQuery.docs.find(d => {
+          if (!d.data().date || !e.date) return false;
+          const diffHours = Math.abs(new Date(d.data().date) - new Date(e.date)) / 1000 / 60 / 60;
+          return diffHours < 24;
+        }) || matchQuery.docs[0];
         const isFinished = e.status.type.state === 'post' || e.status.type.detail === 'FT' || e.status.type.completed === true;
         const newStatus = isFinished ? 'FINISHED' : 'IN_PLAY';
 
