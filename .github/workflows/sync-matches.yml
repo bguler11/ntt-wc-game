@@ -2,7 +2,7 @@ name: Sync Fixture & Permanent Points
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # Her 30 dakikada bir çalışarak kalıcı puanları hesaplar
+    - cron: '*/30 15-22 * * *' # 18:00 - 01:00 (TSİ) arası her 30 dakikada bir çalışarak kalıcı puanları hesaplar
   workflow_dispatch:
 
 concurrency:

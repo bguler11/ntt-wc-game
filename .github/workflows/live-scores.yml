@@ -2,7 +2,7 @@ name: Live Match Scores Loop
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # Her 15 dakikada bir çalışır, maç varsa kapanmadan döngüye girer
+    - cron: '*/10 15-21 * * *' # 18:00 - 00:00 (TSİ) arası her 10 dakikada bir çalışır, maç varsa kapanmadan döngüye girer
   workflow_dispatch: # Manuel tetikleme
 
 concurrency:
