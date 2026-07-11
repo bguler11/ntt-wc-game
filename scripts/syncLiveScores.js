@@ -51,22 +51,79 @@ async function syncLiveScoresOnce(db) {
     }
 
     console.log(`ESPN API'sine istek atilmayacak (Sifir Maliyet Uyku Modu).`);
-    return false; // Döngüyü kır
+    return true; // Döngüyü kırma, sadece bekle
   }
 
-  console.log(`[*] Aktif mac bulundu! ESPN API'den canli maclar cekiliyor...`);
-  const url = `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard`;
+  const getYYYYMMDD = (d) => {
+    const yyyy = d.getUTCFullYear();
+    const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const dd = String(d.getUTCDate()).padStart(2, '0');
+    return `${yyyy}${mm}${dd}`;
+  };
+
+  const getLocalYYYYMMDD = (d) => {
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}${mm}${dd}`;
+  };
+
+  const targetDates = new Set();
+  targetDates.add(getYYYYMMDD(now));
+  targetDates.add(getLocalYYYYMMDD(now));
+
+  matchQuery.docs.forEach(doc => {
+    const data = doc.data();
+    if (data.date) {
+      const matchDate = new Date(data.date);
+      const diffMinutes = (now - matchDate) / 1000 / 60;
+      if (diffMinutes >= -15 && diffMinutes <= 200) {
+        targetDates.add(getYYYYMMDD(matchDate));
+        targetDates.add(getLocalYYYYMMDD(matchDate));
+      }
+    }
+    if (data.status === 'IN_PLAY' || data.status === 'PAUSED') {
+      if (data.date) {
+        const matchDate = new Date(data.date);
+        targetDates.add(getYYYYMMDD(matchDate));
+        targetDates.add(getLocalYYYYMMDD(matchDate));
+      }
+    }
+  });
+
+  console.log(`[*] Aktif mac bulundu! ESPN API'den canli maclar cekiliyor... Hedef tarihler:`, Array.from(targetDates));
   
   try {
-    const res = await fetch(url);
-    const data = await res.json();
-    if (!data.events) {
-      console.log("Bugun icin ESPN API'de mac bulunamadi.");
-      return false; // Hata veya maç yoksa döngüyü kır, 15 dk sonraki cron tekrar denesin
+    const allEvents = [];
+    for (const dateStr of targetDates) {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=${dateStr}`;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.events) {
+          allEvents.push(...data.events);
+        }
+      } catch (err) {
+        console.error(`ESPN API (${dateStr}) istegi basarisiz:`, err.message);
+      }
     }
 
+    if (allEvents.length === 0) {
+      console.log("ESPN API'de hicbir mac bulunamadi.");
+      return true; // Hata veya maç yoksa döngüyü kırma, 1 dk bekle
+    }
+
+    // Deduplicate events by id
+    const seenIds = new Set();
+    const uniqueEvents = allEvents.filter(e => {
+      if (!e || !e.id) return false;
+      if (seenIds.has(e.id)) return false;
+      seenIds.add(e.id);
+      return true;
+    });
+
     // state: "in" (live), "post" (finished)
-    const liveEvents = data.events.filter(e => e?.status?.type?.state === 'in' || e?.status?.type?.state === 'post');
+    const liveEvents = uniqueEvents.filter(e => e?.status?.type?.state === 'in' || e?.status?.type?.state === 'post');
     
     console.log(`ESPN API'de ${liveEvents.length} adet CANLI veya BITMIS mac bulundu.`);
 
@@ -182,7 +239,7 @@ async function syncLiveScoresOnce(db) {
     return true; // Hala aktif maç var, döngüye devam et
   } catch(e) {
     console.error("HATA:", e);
-    return false; // Hata durumunda sonsuz döngüyü kır
+    return true; // Hata durumunda döngüyü kırma, 1 dk sonra tekrar dene
   }
 }
 
